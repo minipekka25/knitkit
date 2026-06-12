@@ -1,0 +1,33 @@
+{
+  "name": "@fedkit/cli",
+  "version": "0.0.0",
+  "description": "CLI for fedkit: shared-deps emitter, manifest generation, integrity hashes, types sync.",
+  "type": "module",
+  "bin": {
+    "fedkit": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fedkit/runtime": "*",
+    "esbuild": "^0.21.5"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
