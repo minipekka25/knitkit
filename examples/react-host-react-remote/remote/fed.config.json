@@ -1,0 +1,5 @@
+{
+  "name": "widgets",
+  "shared": ["react", "react-dom"],
+  "exposes": ["./Counter"]
+}

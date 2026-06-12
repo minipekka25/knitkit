@@ -1,0 +1,11 @@
+{
+  "name": "@fedkit/example-node-ssr",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:remote": "node remote/serve.mjs",
+    "dev": "node server/server.mjs",
+    "test": "node test.mjs"
+  }
+}

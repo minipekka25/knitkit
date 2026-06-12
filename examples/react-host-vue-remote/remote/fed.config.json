@@ -1,0 +1,5 @@
+{
+  "name": "checkout",
+  "shared": ["react", "react-dom"],
+  "exposes": ["./CartWidget.vue"]
+}

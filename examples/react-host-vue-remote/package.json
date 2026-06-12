@@ -1,0 +1,15 @@
+{
+  "name": "@fedkit/example-react-host-vue-remote",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:host": "npm --workspace=host run dev",
+    "dev:remote": "npm --workspace=remote run dev",
+    "dev": "concurrently -n host,remote -c blue,green \"npm run dev:host\" \"npm run dev:remote\"",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}
