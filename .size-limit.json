@@ -1,0 +1,8 @@
+[
+  {
+    "name": "@fedkit/runtime",
+    "path": "packages/runtime/dist/index.js",
+    "limit": "5 KB",
+    "ignore": []
+  }
+]

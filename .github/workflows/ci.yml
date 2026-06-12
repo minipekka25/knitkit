@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test-size:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      # Build runtime first — @fedkit/cli and @fedkit/node consume it at runtime.
+      - run: npm run --workspace=@fedkit/runtime build
+      - run: npm run --workspace=@fedkit/cli build
+      - run: npm run --workspace=@fedkit/node build
+      - run: npm run --workspace=@fedkit/react build
+      - run: npm run --workspace=@fedkit/overrides build
+      # Package unit tests only. The example's Playwright smoke test is network-
+      # dependent (esm.sh) and browser-dependent; it is run locally (see README /
+      # project_brief §9), not as a CI gate.
+      - run: npm run --workspace=@fedkit/runtime test
+      - run: npm run --workspace=@fedkit/cli test
+      - run: npm run --workspace=@fedkit/node test
+      - run: npm run --workspace=@fedkit/react test
+      - run: npm run --workspace=@fedkit/overrides test
+      - run: node packages/cli/dist/index.js validate spec/examples/checkout.manifest.json
+      - run: npm run --workspace=@fedkit/runtime size
+        if: matrix.os == 'ubuntu-latest'

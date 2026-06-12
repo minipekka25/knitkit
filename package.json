@@ -1,0 +1,32 @@
+{
+  "name": "fedkit-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "build": "npm run -ws --if-present build",
+    "test": "npm run -ws --if-present test",
+    "typecheck": "npm run --workspace=@fedkit/runtime --workspace=@fedkit/cli --workspace=@fedkit/node --workspace=@fedkit/react --workspace=@fedkit/overrides typecheck",
+    "size": "npm --workspace=@fedkit/runtime run size",
+    "lint": "echo \"(lint stub)\"",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "^2.31.0",
+    "@size-limit/preset-small-lib": "^11.1.2",
+    "@vitest/coverage-v8": "^1.6.1",
+    "concurrently": "^10.0.3",
+    "esbuild": "^0.21.5",
+    "size-limit": "^11.1.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

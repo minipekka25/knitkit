@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-bundle/
+.turbo/
+.fedkit/
+coverage/
+.size-limit.json.tmp
+*.log
+.DS_Store
+
+# Playwright
+test-results/
+playwright-report/
+.last-run.json
