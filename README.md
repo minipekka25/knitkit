@@ -99,6 +99,10 @@ If you want a bundler plugin that does everything, use Module Federation. If you
 
 The **manifest spec** lives in [`/spec`](./spec/manifest-0.1.md) and is versioned from day one.
 
+## Documentation
+
+Guides and comparisons live in [`/docs`](./docs/README.md): [getting started](./docs/getting-started.md), [security (SRI/CSP/CORS)](./docs/security.md), [dev experience & HMR](./docs/hmr-and-dev.md), [vs Module Federation](./docs/vs-module-federation.md), [vs Native Federation](./docs/vs-native-federation.md), and the [roadmap](./docs/roadmap.md). (The docs *site* framework is an open decision — the content is framework-agnostic Markdown.)
+
 ## Contributing
 
 Early days — issues and discussion welcome. The negotiation function ([`packages/runtime/src/negotiate.ts`](./packages/runtime/src/negotiate.ts)) is the most-tested code in the repo; changes there need tests first. Core stays **< 5 KB and zero-dependency** — that constraint is non-negotiable and CI-enforced.
