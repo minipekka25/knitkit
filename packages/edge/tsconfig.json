@@ -1,0 +1,12 @@
+{
+  // Typecheck + editor config (build is done by tsup, not tsc). See runtime/tsconfig.json.
+  // DOM lib supplies the Web types (fetch, Response, ReadableStream, TextEncoder) that the
+  // edge runtimes (Workers/Deno/Vercel Edge) provide.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+  },
+  "include": ["src", "test"],
+  "exclude": ["dist", "node_modules"]
+}

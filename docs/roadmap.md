@@ -15,6 +15,8 @@ named (`project_brief.md` §10).
   hydration-parity import-map serialization.
 - **`@fedkit/react`** — `"use client"` `<RemoteComponent>` (lazy + Suspense + error boundary).
 - **`@fedkit/overrides`** — local-override dev tool.
+- **`@fedkit/edge`** — ESI-style HTML fragment stream-stitching + import-map injection for
+  Cloudflare Workers / Deno Deploy / Vercel Edge (Web-standard `fetch` + Web Streams).
 - **Examples** — React+Vue, React `<RemoteComponent>`, and Node SSR, each with a smoke test.
 - **Release discipline** — changesets configured (publish gated on the name decision).
 
@@ -34,8 +36,7 @@ named (`project_brief.md` §10).
 
 - Runtime SRI enforcement for exposed modules in the browser (platform-limited — see
   [Security](./security.md)); manifest signing.
-- `@fedkit/edge` — ESI-style fragment composition for Workers / Deno Deploy / Vercel Edge.
-- Tier-2 RSC fragment composition; monitor `react-server-dom-esm` for Tier-3.
+- Tier-2 RSC fragment composition (built on `@fedkit/edge`); monitor `react-server-dom-esm` for Tier-3.
 - A benchmark harness (cold-load + bytes shipped vs Module Federation).
 - `--auto` shared-list proposer, if demanded.
 

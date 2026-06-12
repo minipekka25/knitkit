@@ -4,6 +4,7 @@
 "@fedkit/node": minor
 "@fedkit/react": minor
 "@fedkit/overrides": minor
+"@fedkit/edge": minor
 ---
 
 Initial `0.1.0` preview of runtime-first, bundler-agnostic module federation:
@@ -13,3 +14,4 @@ Initial `0.1.0` preview of runtime-first, bundler-agnostic module federation:
 - **`@fedkit/node`** — SSR via `module.register` loader hooks with SRI verification, a module cache, and hydration-parity import-map serialization.
 - **`@fedkit/react`** — `"use client"` `<RemoteComponent>` (lazy + Suspense + error boundary) over `loadRemote`.
 - **`@fedkit/overrides`** — local-override dev tool: point a remote at `localhost` against deployed others (localStorage + a tiny UI widget).
+- **`@fedkit/edge`** — ESI-style edge composition: stream-stitch remote HTML fragments and inject the negotiated import map, on Cloudflare Workers / Deno Deploy / Vercel Edge.

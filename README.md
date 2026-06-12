@@ -95,7 +95,7 @@ If you want a bundler plugin that does everything, use Module Federation. If you
 | [`@fedkit/node`](./packages/node) | ✅ MVP | `module.register` SSR loader hooks, SRI verification, module cache, hydration-parity import-map serialization. |
 | [`@fedkit/react`](./packages/react) | ✅ MVP | Thin `"use client"` `<RemoteComponent>` wrapper (lazy + Suspense + error boundary) over `loadRemote`. |
 | [`@fedkit/overrides`](./packages/overrides) | ✅ MVP | Local-override dev tool: point a remote at `localhost` against deployed others (localStorage + UI widget). |
-| `@fedkit/edge` | 🔜 Phase 3 | Fragment/ESI composition for the edge. |
+| [`@fedkit/edge`](./packages/edge) | ✅ MVP | ESI-style HTML fragment stream-stitching + import-map injection for Workers / Deno / Vercel Edge. |
 
 The **manifest spec** lives in [`/spec`](./spec/manifest-0.1.md) and is versioned from day one.
 
