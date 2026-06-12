@@ -1,0 +1,31 @@
+{
+  "name": "@fedkit/runtime",
+  "version": "0.0.0",
+  "description": "Runtime-first, bundler-agnostic module federation on native ESM + import maps.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "size": "size-limit",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
+    "size-limit": "^11.1.2",
+    "@size-limit/preset-small-lib": "^11.1.2"
+  }
+}

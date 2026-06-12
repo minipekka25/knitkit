@@ -1,0 +1,20 @@
+{
+  "spec": "0.1",
+  "name": "host",
+  "exposes": {
+    "./App": {
+      "url": "./exposes/App.js"
+    }
+  },
+  "shared": {
+    "react": {
+      "version": "18.3.1",
+      "requiredVersion": "^18.0.0",
+      "singleton": true,
+      "url": "./shared/react-18.3.1.js"
+    }
+  },
+  "meta": {
+    "framework": "react@18"
+  }
+}

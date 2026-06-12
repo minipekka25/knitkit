@@ -1,0 +1,11 @@
+{
+  // Typecheck + editor config: covers src AND test. No rootDir/outDir here —
+  // the build is done by tsup (esbuild + dts), not `tsc`, so `tsc --noEmit`
+  // can type-check the whole package (including tests) without rootDir errors.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": ["src", "test"],
+  "exclude": ["dist", "node_modules"]
+}

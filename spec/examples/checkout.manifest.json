@@ -1,0 +1,30 @@
+{
+  "spec": "0.1",
+  "name": "checkout",
+  "exposes": {
+    "./CartWidget": {
+      "url": "./exposes/CartWidget.js",
+      "types": "./types/CartWidget.d.ts"
+    }
+  },
+  "shared": {
+    "react": {
+      "version": "18.3.1",
+      "requiredVersion": "^18.2.0",
+      "singleton": true,
+      "url": "./shared/react-18.3.1.js",
+      "integrity": "sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9r7jQfbYyF3sD5nK8n+dvY3nK0O2uP0kQ=="
+    },
+    "react-dom": {
+      "version": "18.3.1",
+      "requiredVersion": "^18.2.0",
+      "singleton": true,
+      "url": "./shared/react-dom-18.3.1.js",
+      "integrity": "sha384-replace-me-with-real-hash"
+    }
+  },
+  "meta": {
+    "buildTime": "2026-06-12T18:00:00Z",
+    "framework": "react@18"
+  }
+}
