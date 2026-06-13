@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@knitkit/runtime": "^0.1.0",
-    "esbuild": "^0.21.5"
+    "esbuild": "^0.28.1"
   },
   "peerDependencies": {
     "typescript": ">=5.0.0"

@@ -24,7 +24,7 @@
     "@size-limit/preset-small-lib": "^11.1.2",
     "@vitest/coverage-v8": "^1.6.1",
     "concurrently": "^10.0.3",
-    "esbuild": "^0.21.5",
+    "esbuild": "^0.28.1",
     "size-limit": "^11.1.2",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5",
