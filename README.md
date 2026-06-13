@@ -1,5 +1,10 @@
 # knitkit
 
+[![CI](https://github.com/minipekka25/knitkit/actions/workflows/ci.yml/badge.svg)](https://github.com/minipekka25/knitkit/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@knitkit/runtime.svg)](https://www.npmjs.com/package/@knitkit/runtime)
+[![runtime size](https://img.shields.io/badge/runtime-3.5%20KB%20brotli-brightgreen.svg)](./benchmarks)
+[![license](https://img.shields.io/npm/l/@knitkit/runtime.svg)](./LICENSE)
+
 > **Module federation, minus the bundler.**
 > A tiny (< 5 KB), zero-dependency, runtime-first module federation system built on native ES modules + import maps — identical in the browser, Node SSR, and the edge.
 
