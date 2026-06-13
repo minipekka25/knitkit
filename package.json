@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@9.0.0",
   "scripts": {
     "build": "npm run --workspace=@knitkit/runtime build && npm run --workspace=@knitkit/cli --workspace=@knitkit/node --workspace=@knitkit/react --workspace=@knitkit/overrides --workspace=@knitkit/edge build",
     "test": "npm run -ws --if-present test",
