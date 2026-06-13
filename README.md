@@ -67,7 +67,7 @@ One import map entry per shared package → one URL → one module instance in t
 
 | | **knitkit** | **Module Federation 2.0** |
 | --- | --- | --- |
-| **Bundler coupling** | None — runtime + manifest + tiny CLI. Externalize shared deps (1 line). | Ergonomic path is `ModuleFederationPlugin`; ESM output still maturing. |
+| **Bundler coupling** | None — runtime + manifest + tiny CLI. [Externalize shared deps (1 line)](https://knitkit.mintlify.app/bundler-recipes). | Ergonomic path is `ModuleFederationPlugin`; ESM output still maturing. |
 | **Shared singletons** | One import map entry → one instance, by construction. | `singleton: true` + `requiredVersion` — powerful, but the canonical footgun. |
 | **Substrate** | Native import maps + ESM. | Bundler runtime + share scopes. |
 | **SSR** | Same manifest drives Node via `module.register` *(Phase 2)*. | Supported, but labeled experimental/hard by its own creator. |
@@ -112,7 +112,7 @@ The **manifest spec** lives in [`/spec`](./spec/manifest-0.1.md) and is versione
 
 📖 **[knitkit.mintlify.app](https://knitkit.mintlify.app)** — guides, comparisons, and reference.
 
-Highlights: [getting started](https://knitkit.mintlify.app/getting-started) · [security (SRI/CSP/CORS)](https://knitkit.mintlify.app/security) · [dev experience & HMR](https://knitkit.mintlify.app/hmr-and-dev) · [vs Module Federation](https://knitkit.mintlify.app/vs-module-federation) · [vs Native Federation](https://knitkit.mintlify.app/vs-native-federation) · [roadmap](https://knitkit.mintlify.app/roadmap). (Source in [`/docs`](./docs).)
+Highlights: [getting started](https://knitkit.mintlify.app/getting-started) · [use with your bundler](https://knitkit.mintlify.app/bundler-recipes) · [security (SRI/CSP/CORS)](https://knitkit.mintlify.app/security) · [dev experience & HMR](https://knitkit.mintlify.app/hmr-and-dev) · [vs Module Federation](https://knitkit.mintlify.app/vs-module-federation) · [vs Native Federation](https://knitkit.mintlify.app/vs-native-federation) · [roadmap](https://knitkit.mintlify.app/roadmap). (Source in [`/docs`](./docs).)
 
 Reproducible [benchmarks](./benchmarks/README.md) measure knitkit's federation overhead at **~3.5 KB brotli — ~7–8× smaller than Module Federation** (delta method, measured against a real MF 2.0 build).
 

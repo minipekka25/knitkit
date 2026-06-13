@@ -35,6 +35,10 @@ knitkit types generate      # optional: emits dist/types/*.d.ts and records them
 Serve `dist/` from any static host. The manifest's relative URLs resolve against the
 manifest's own URL.
 
+> **Building the host with a bundler?** Mark your shared deps (and `@knitkit/runtime`) as
+> `external` so the bundler keeps them as bare imports for the import map to resolve — one line
+> per bundler. See [Use knitkit with your bundler](/bundler-recipes).
+
 ## Load remotes from a host
 
 The one hard rule: **the import map must be injected before the first module import that

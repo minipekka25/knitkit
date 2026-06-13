@@ -17,7 +17,7 @@
       },
       {
         "group": "Guides",
-        "pages": ["security", "hmr-and-dev"]
+        "pages": ["bundler-recipes", "security", "hmr-and-dev"]
       },
       {
         "group": "Comparisons",
