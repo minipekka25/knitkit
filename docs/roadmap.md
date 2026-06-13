@@ -1,4 +1,7 @@
-# Roadmap
+---
+title: "Roadmap"
+description: "Honest status — what's shipped, what's next, and what we won't build."
+---
 
 Honest status. fedkit is pre-1.0; the `@fedkit/*` scope is a placeholder until the project is
 named (`project_brief.md` §10).

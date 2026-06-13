@@ -1,4 +1,7 @@
-# fedkit vs Native Federation
+---
+title: "vs Native Federation"
+description: "fedkit's closest sibling on import maps — positioning and scope differences."
+---
 
 [Native Federation](https://github.com/angular-architects/native-federation) (Manfred Steyer)
 is fedkit's closest philosophical sibling: it also builds on **import maps + native ESM**

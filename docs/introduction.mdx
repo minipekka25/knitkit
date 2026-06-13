@@ -1,0 +1,48 @@
+---
+title: "fedkit"
+description: "Module federation, minus the bundler — runtime-first, on native ESM + import maps."
+---
+
+fedkit is a tiny (< 5 KB), zero-dependency, **runtime-first** module federation system built on
+native ES modules and import maps. The same manifest drives the browser, Node SSR, and the edge.
+
+<Note>
+  `fedkit` is a working codename — the `@fedkit/*` package scope is a placeholder until the
+  project is named. APIs are pre-1.0.
+</Note>
+
+## Why fedkit
+
+- **No bundler plugin.** A runtime, a manifest, and a small CLI. Externalize shared deps in one line.
+- **Singletons by construction.** One import-map entry per shared package → one instance, shared by the host and every remote via the browser module cache. The "more than one copy of React" bug class is gone by design.
+- **Debuggable.** Open DevTools, read the import map, see which version won and from where.
+- **Everywhere.** Browser, Node SSR (`module.register` + SRI), and edge composition — one manifest.
+- **Small.** Federation overhead is ~3.5 KB brotli; [measured ~7–8× smaller](/vs-module-federation) than Module Federation.
+
+## Quick taste
+
+```html
+<script type="importmap">
+  { "imports": { "@fedkit/runtime": "/runtime/index.js", "react": "https://esm.sh/react@18.3.1" } }
+</script>
+<script type="module">
+  import { registerRemotes, loadRemote } from "@fedkit/runtime";
+  await registerRemotes([{ name: "checkout", manifest: "/federation/fed.manifest.json" }]);
+  const CartWidget = await loadRemote("checkout/CartWidget");
+</script>
+```
+
+<CardGroup cols={2}>
+  <Card title="Get started" icon="rocket" href="/getting-started">
+    Install, build a remote, load it from a host, and type it.
+  </Card>
+  <Card title="vs Module Federation" icon="scale-balanced" href="/vs-module-federation">
+    A fair, measured comparison with the incumbent.
+  </Card>
+  <Card title="Security" icon="shield" href="/security">
+    SRI, CSP, and CORS — pin and verify every remote.
+  </Card>
+  <Card title="Dev experience" icon="wrench" href="/hmr-and-dev">
+    The honest HMR stance and the local-override widget.
+  </Card>
+</CardGroup>

@@ -1,4 +1,7 @@
-# Security: SRI, CSP, CORS
+---
+title: "Security: SRI, CSP, CORS"
+description: "Pin and verify every remote module — Subresource Integrity, CSP, and CORS guidance."
+---
 
 Loading code from another origin at runtime is powerful and dangerous. fedkit's headline
 guidance: **pin and verify every remote module's hash.**

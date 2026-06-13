@@ -1,8 +1,14 @@
 # fedkit documentation
 
-> Framework-agnostic docs content. The published docs **site** framework (Astro Starlight
-> vs VitePress) is an open founder decision (`project_brief.md` §10.3); these pages are
-> written as plain Markdown so they drop into either.
+> Published with **[Mintlify](https://mintlify.com)** (`docs.json` + MDX/Markdown pages with
+> frontmatter). Preview locally:
+>
+> ```bash
+> cd docs && npx mint@latest dev      # http://localhost:3000
+> ```
+>
+> The page files below double as plain Markdown for GitHub viewing. (Docs-site framework
+> decision, `project_brief.md` §10.3: **Mintlify**.)
 
 ## Start here
 

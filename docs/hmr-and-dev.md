@@ -1,4 +1,7 @@
-# Dev experience & HMR
+---
+title: "Dev experience & HMR"
+description: "Why fedkit has no cross-remote HMR — and the local-override workflow you get instead."
+---
 
 The honest version: **fedkit has no cross-remote hot module replacement, and won't.**
 

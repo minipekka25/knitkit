@@ -1,0 +1,43 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "fedkit",
+  "description": "Runtime-first, bundler-agnostic module federation on native ESM + import maps.",
+  "colors": {
+    "primary": "#4f46e5",
+    "light": "#818cf8",
+    "dark": "#4338ca"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get started",
+        "pages": ["introduction", "getting-started"]
+      },
+      {
+        "group": "Guides",
+        "pages": ["security", "hmr-and-dev"]
+      },
+      {
+        "group": "Comparisons",
+        "pages": ["vs-module-federation", "vs-native-federation"]
+      },
+      {
+        "group": "Reference",
+        "pages": ["roadmap"]
+      }
+    ]
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/your-org/fedkit"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/your-org/fedkit"
+    }
+  }
+}

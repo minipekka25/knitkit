@@ -1,4 +1,7 @@
-# fedkit vs Module Federation 2.0
+---
+title: "vs Module Federation 2.0"
+description: "A fair, measured comparison with the incumbent — where each wins."
+---
 
 Module Federation 2.0 (ByteDance Web Infra + Zack Jackson) is the incumbent and a genuinely
 capable system: a decoupled runtime, an `mf-manifest.json`, TypeScript type hints, Chrome

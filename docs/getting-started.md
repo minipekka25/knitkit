@@ -1,4 +1,7 @@
-# Getting started
+---
+title: "Getting started"
+description: "Install fedkit, build a remote, load it from a host, and type it."
+---
 
 fedkit is runtime-first module federation on native ES modules + import maps. There is no
 bundler plugin to install — you ship a runtime, a manifest, and a small CLI.
