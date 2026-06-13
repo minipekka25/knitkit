@@ -32,12 +32,12 @@
   "navbar": {
     "primary": {
       "type": "github",
-      "href": "https://github.com/your-org/knitkit"
+      "href": "https://github.com/minipekka25/knitkit"
     }
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/your-org/knitkit"
+      "github": "https://github.com/minipekka25/knitkit"
     }
   }
 }
