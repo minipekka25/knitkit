@@ -1,0 +1,10 @@
+{
+  "name": "@fedkit/benchmarks",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bytes": "node bytes.mjs",
+    "cold-load": "node cold-load.mjs"
+  }
+}

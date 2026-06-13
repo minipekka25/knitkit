@@ -12,3 +12,6 @@ coverage/
 test-results/
 playwright-report/
 .last-run.json
+
+# Generated benchmark output (reproduce with `node benchmarks/*.mjs`)
+benchmarks/results/

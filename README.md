@@ -102,7 +102,7 @@ The **manifest spec** lives in [`/spec`](./spec/manifest-0.1.md) and is versione
 
 ## Documentation
 
-Guides and comparisons live in [`/docs`](./docs/README.md): [getting started](./docs/getting-started.md), [security (SRI/CSP/CORS)](./docs/security.md), [dev experience & HMR](./docs/hmr-and-dev.md), [vs Module Federation](./docs/vs-module-federation.md), [vs Native Federation](./docs/vs-native-federation.md), and the [roadmap](./docs/roadmap.md). (The docs *site* framework is an open decision — the content is framework-agnostic Markdown.)
+Guides and comparisons live in [`/docs`](./docs/README.md): [getting started](./docs/getting-started.md), [security (SRI/CSP/CORS)](./docs/security.md), [dev experience & HMR](./docs/hmr-and-dev.md), [vs Module Federation](./docs/vs-module-federation.md), [vs Native Federation](./docs/vs-native-federation.md), and the [roadmap](./docs/roadmap.md). (The docs *site* framework is an open decision — the content is framework-agnostic Markdown.) Reproducible [benchmarks](./benchmarks/README.md) measure fedkit's federation overhead (~3.5 KB brotli, runtime only).
 
 ## Contributing
 
