@@ -38,25 +38,26 @@ That's the whole contract: declare remotes by manifest URL, `loadRemote` an expo
 
 ## Live demo
 
-Two runnable examples (both zero bundler plugins, both with a self-booting Playwright smoke test):
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/minipekka25/knitkit/tree/main/examples/stackblitz)
 
+One click runs a zero-build, in-browser demo: it loads the **published `@knitkit/runtime` from a CDN**, `loadRemote`s a remote behind its own manifest, and proves the shared-singleton across the boundary. Open DevTools → Network to watch the import map resolve.
+
+Runnable examples in the repo:
+
+- [`examples/stackblitz`](./examples/stackblitz) — the live demo above: `loadRemote` + a shared singleton, framework-agnostic, no build step.
 - [`examples/react-host-vue-remote`](./examples/react-host-vue-remote) — a **React host mounting a Vue 3 remote**, one shared state object proven identical across the framework boundary.
 - [`examples/react-host-react-remote`](./examples/react-host-react-remote) — a **React host rendering a React remote via `<RemoteComponent>`**, sharing one React instance so the remote's hooks work across the boundary.
 - [`examples/nextjs-host`](./examples/nextjs-host) — a **Next.js App Router** host embedding a remote with `<RemoteFragment>` and **zero `next.config` changes** (uses the published `@knitkit/react`).
 - [`examples/node-ssr`](./examples/node-ssr) — **Node SSR** of a federated React component via `@knitkit/node` loader hooks (SRI-verified), with the import map serialized for hydration parity.
 - [`examples/edge-composition`](./examples/edge-composition) — **Tier-2 edge composition**: independent apps (a React fragment + a framework-less fragment) stitched into one streamed page by `@knitkit/edge`.
 
-The Vue demo:
+Run any of them locally:
 
 ```bash
-pnpm install
-pnpm --filter @knitkit/runtime build
-pnpm --filter @knitkit/example-react-host-vue-remote test   # Playwright boots both servers and asserts the singleton proof
+npm ci
+npm run --workspace=@knitkit/runtime build
+npm --prefix examples/react-host-vue-remote test   # Playwright boots both servers and asserts the singleton proof
 ```
-
-Open `examples/react-host-vue-remote` — the host serves on `:5173`, the Vue remote on `:5174`. Open DevTools → the import map shows exactly which shared dependency won and from where.
-
-> 🔜 A hosted StackBlitz link lands with the public launch (pending the final project name — see the roadmap).
 
 ## Why the singleton just works
 

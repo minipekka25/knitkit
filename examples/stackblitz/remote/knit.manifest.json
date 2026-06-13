@@ -1,0 +1,9 @@
+{
+  "spec": "0.1",
+  "name": "widgets",
+  "exposes": {
+    "./Widget": { "url": "./widget.js" }
+  },
+  "shared": {},
+  "meta": { "framework": "vanilla" }
+}

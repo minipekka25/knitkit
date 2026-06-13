@@ -16,7 +16,8 @@
   "workspaces": [
     "packages/*",
     "examples/*",
-    "!examples/nextjs-host"
+    "!examples/nextjs-host",
+    "!examples/stackblitz"
   ],
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

@@ -1,0 +1,6 @@
+{
+  "startCommand": "npm run dev",
+  "env": {
+    "PORT": "8080"
+  }
+}
