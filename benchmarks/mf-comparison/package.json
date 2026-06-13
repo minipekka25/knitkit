@@ -1,0 +1,23 @@
+{
+  "name": "fedkit-mf-comparison",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Isolated Module Federation 2.0 app for an apples-to-apples bytes comparison. Not a workspace.",
+  "scripts": {
+    "build:host": "rspack build -c host/rspack.config.cjs",
+    "build:remote": "rspack build -c remote/rspack.config.cjs",
+    "build:baseline": "rspack build -c baseline/rspack.config.cjs",
+    "build": "npm run build:remote && npm run build:host && npm run build:baseline",
+    "measure": "node measure.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@module-federation/enhanced": "2.5.1",
+    "@rspack/cli": "^1.0.0",
+    "@rspack/core": "^1.0.0"
+  }
+}

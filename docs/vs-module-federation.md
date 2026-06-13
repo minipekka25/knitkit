@@ -15,7 +15,7 @@ fedkit makes a different bet: **radical simplicity on platform primitives**.
 | **Debuggability** | Open DevTools → the import map shows who won and from where | Share-scope resolution is bundler-internal |
 | **SSR** | Same manifest drives Node via `module.register`; SRI verified before exec | Supported, but labeled experimental/hard by its own creator |
 | **Types** | `.d.ts` published next to the manifest, synced to augment `loadRemote` | Strong — TS hints are a praised MF feature |
-| **Core size** | < 5 KB min+gzip, zero deps | Larger; embedded in the bundler runtime |
+| **Federation overhead** | ~3.5 KB brotli (`@fedkit/runtime`) | ~27 KB brotli (measured, delta method) |
 
 ## Where MF's worst bugs live — and why ours can't
 

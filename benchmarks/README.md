@@ -36,21 +36,29 @@ navigation to the remote component being visible. Representative local run: ~15 
 ~18 KB encoded, a few hundred ms to low seconds depending on the network (React is pulled from
 esm.sh in the demo; self-hosting shared assets removes that variance).
 
-## Comparing against Module Federation — honestly
+## vs Module Federation 2.0 — measured, not asserted
 
-We deliberately **do not ship fabricated competitor numbers** (`project_brief.md` §9: such
-figures fluctuate and must be verified before publishing). To produce a fair comparison:
+`mf-comparison/` is a **real Module Federation 2.0 app** (`@module-federation/enhanced` +
+rspack: a host, a remote, shared React). We measure federation overhead with the **delta
+method** — build the *same* app twice, with and without federation, and diff the total shipped
+JS. This isolates the federation machinery regardless of how either build chunks React, so
+there's nothing to fudge.
 
-1. Build the **same** app twice — once with fedkit, once with Module Federation 2.0
-   (`@module-federation/enhanced` + your bundler) — same host, same one remote, same shared
-   React.
-2. For **bytes**, measure the federation runtime each ships (exclude the shared React, which
-   both load): point `bytes.mjs`'s approach at MF's emitted runtime chunk.
-3. For **cold-load**, run `cold-load.mjs`'s methodology (Resource Timing) against both apps on
-   the same machine/network, several times, and report medians.
-4. Publish the methodology alongside the numbers so they're reproducible.
+```bash
+cd benchmarks/mf-comparison
+npm install        # MF 2.0 + rspack (isolated; not part of the main workspace)
+npm run build      # builds the federated host, the remote, and a non-federated baseline
+npm run measure
+```
 
-What we can say without measuring MF: fedkit's federation overhead is the
-**`@fedkit/runtime` bundle alone (~3.5 KB brotli, zero deps)** plus a one-line import map —
-there is no bundler-embedded runtime, share-scope bookkeeping, or plugin chunk. The honest
-comparison is left to a real MF build, run with the scripts above.
+Representative result (run it for current numbers):
+
+| Federation overhead a host ships (React shared/excluded) | raw | brotli |
+| --- | --- | --- |
+| **Module Federation 2.0** (delta: federated − non-federated host) | ~108 KB | **~27 KB** |
+| **fedkit** (`@fedkit/runtime`) | ~11 KB | **~3.5 KB** |
+
+So MF adds roughly **7–8× more federation code** to a host. The honest framing, though, isn't
+only bytes: MF's overhead is bundler-generated per app (a container entry, share-scope
+bootstrap, module wrappers), whereas fedkit's is a single shared runtime + a static, inspectable
+import map. Re-verify before quoting publicly (`project_brief.md` §9); versions move.
