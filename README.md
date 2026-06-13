@@ -3,6 +3,7 @@
 [![CI](https://github.com/minipekka25/knitkit/actions/workflows/ci.yml/badge.svg)](https://github.com/minipekka25/knitkit/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@knitkit/runtime.svg)](https://www.npmjs.com/package/@knitkit/runtime)
 [![runtime size](https://img.shields.io/badge/runtime-3.5%20KB%20brotli-brightgreen.svg)](./benchmarks)
+[![docs](https://img.shields.io/badge/docs-knitkit.mintlify.app-blue.svg)](https://knitkit.mintlify.app)
 [![license](https://img.shields.io/npm/l/@knitkit/runtime.svg)](./LICENSE)
 
 > **Module federation, minus the bundler.**
@@ -107,7 +108,11 @@ The **manifest spec** lives in [`/spec`](./spec/manifest-0.1.md) and is versione
 
 ## Documentation
 
-Guides and comparisons live in [`/docs`](./docs/README.md): [getting started](./docs/getting-started.md), [security (SRI/CSP/CORS)](./docs/security.md), [dev experience & HMR](./docs/hmr-and-dev.md), [vs Module Federation](./docs/vs-module-federation.md), [vs Native Federation](./docs/vs-native-federation.md), and the [roadmap](./docs/roadmap.md). The site is published with [Mintlify](https://mintlify.com) (`docs/docs.json`; `cd docs && npx mint@latest dev` to preview). Reproducible [benchmarks](./benchmarks/README.md) measure knitkit's federation overhead at **~3.5 KB brotli — ~7–8× smaller than Module Federation** (delta method, measured against a real MF 2.0 build).
+📖 **[knitkit.mintlify.app](https://knitkit.mintlify.app)** — guides, comparisons, and reference.
+
+Highlights: [getting started](https://knitkit.mintlify.app/getting-started) · [security (SRI/CSP/CORS)](https://knitkit.mintlify.app/security) · [dev experience & HMR](https://knitkit.mintlify.app/hmr-and-dev) · [vs Module Federation](https://knitkit.mintlify.app/vs-module-federation) · [vs Native Federation](https://knitkit.mintlify.app/vs-native-federation) · [roadmap](https://knitkit.mintlify.app/roadmap). (Source in [`/docs`](./docs).)
+
+Reproducible [benchmarks](./benchmarks/README.md) measure knitkit's federation overhead at **~3.5 KB brotli — ~7–8× smaller than Module Federation** (delta method, measured against a real MF 2.0 build).
 
 ## Contributing
 
