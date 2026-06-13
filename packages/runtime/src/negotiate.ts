@@ -1,5 +1,5 @@
 import { satisfies } from "./semver.js";
-import { FedkitError } from "./errors.js";
+import { KnitError } from "./errors.js";
 import type { ImportMap, Manifest, SharedDecl } from "./manifest.js";
 
 export interface NegotiationResult {
@@ -56,7 +56,7 @@ export function negotiateShared(
   for (const [pkg, decl] of Object.entries(hostShared)) {
     const importAs = decl.importAs ?? pkg;
     if (!decl.url) {
-      throw new FedkitError(
+      throw new KnitError(
         "KNIT_ERR_MANIFEST_INVALID",
         `Host shared "${pkg}" is missing a "url".`,
         `The host must provide a url for every shared dep, or omit it.`,
@@ -77,7 +77,7 @@ export function negotiateShared(
     for (const [pkg, decl] of Object.entries(manifest.shared)) {
       const importAs = pkg;
       if (!decl.url) {
-        throw new FedkitError(
+        throw new KnitError(
           "KNIT_ERR_MANIFEST_INVALID",
           `Remote "${name}" shared "${pkg}" is missing a "url".`,
           `Every shared entry must declare a url pointing to the emitted ESM asset.`,
@@ -140,7 +140,7 @@ export function negotiateShared(
     // No version satisfies all ranges.
     const singletons = entries.filter((e) => e.singleton);
     if (singletons.length > 0) {
-      throw new FedkitError(
+      throw new KnitError(
         "KNIT_ERR_SINGLETON_CONFLICT",
         buildSingletonConflictMessage(pkg, entries),
         buildSingletonConflictSuggestion(pkg, entries),

@@ -14,5 +14,9 @@ export { getShareInfo } from "./getShareInfo.js";
 export { validateManifest } from "./manifest.js";
 export type { Manifest, ExposeDecl, SharedDecl, ImportMap } from "./manifest.js";
 
+export { KnitError, isKnitError } from "./errors.js";
+export type { KnitErrorCode } from "./errors.js";
+
+/** @deprecated Use `KnitError` / `isKnitError` / `KnitErrorCode`. Kept for one minor. */
 export { FedkitError, isFedkitError } from "./errors.js";
 export type { FedkitErrorCode } from "./errors.js";

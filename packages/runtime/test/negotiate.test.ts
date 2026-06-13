@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { negotiateShared } from "../src/negotiate.js";
 import type { Manifest } from "../src/manifest.js";
-import { isFedkitError } from "../src/errors.js";
+import { isKnitError } from "../src/errors.js";
 
 function manifest(overrides: Partial<Manifest> = {}): Manifest {
   return {
@@ -196,8 +196,8 @@ describe("negotiateShared", () => {
           { name: "marketing", manifest: m2, baseUrl: "https://cdn.example.com/marketing/" },
         ]);
       } catch (e) {
-        expect(isFedkitError(e)).toBe(true);
-        if (isFedkitError(e)) {
+        expect(isKnitError(e)).toBe(true);
+        if (isKnitError(e)) {
           expect(e.code).toBe("KNIT_ERR_SINGLETON_CONFLICT");
           expect(e.suggestion).toBeTruthy();
         }
@@ -323,7 +323,7 @@ describe("negotiateShared", () => {
         );
         expect.fail("expected throw");
       } catch (e) {
-        expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
+        expect(isKnitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
       }
     });
 

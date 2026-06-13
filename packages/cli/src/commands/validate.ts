@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { validateManifest, isFedkitError } from "@knitkit/runtime";
+import { validateManifest, isKnitError } from "@knitkit/runtime";
 
 export async function validateCommand(manifestPath: string): Promise<{ ok: true } | { ok: false; message: string; suggestion?: string }> {
   let raw: unknown;
@@ -12,7 +12,7 @@ export async function validateCommand(manifestPath: string): Promise<{ ok: true 
     validateManifest(raw, manifestPath);
     return { ok: true };
   } catch (e) {
-    if (isFedkitError(e)) return { ok: false, message: e.message, suggestion: e.suggestion };
+    if (isKnitError(e)) return { ok: false, message: e.message, suggestion: e.suggestion };
     return { ok: false, message: (e as Error).message };
   }
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach } from "vitest";
 import { loadRemote, setRegistrations } from "../src/loadRemote.js";
 import type { Manifest } from "../src/manifest.js";
-import { isFedkitError } from "../src/errors.js";
+import { isKnitError } from "../src/errors.js";
 
 function manifest(): Manifest {
   return {
@@ -26,7 +26,7 @@ describe("loadRemote", () => {
       await loadRemote("noSlash");
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e)).toBe(true);
+      expect(isKnitError(e)).toBe(true);
     }
   });
 
@@ -35,7 +35,7 @@ describe("loadRemote", () => {
       await loadRemote("unknown/Foo");
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_NOT_REGISTERED");
+      expect(isKnitError(e) && e.code).toBe("KNIT_ERR_NOT_REGISTERED");
     }
   });
 
@@ -44,7 +44,7 @@ describe("loadRemote", () => {
       await loadRemote("checkout/Missing");
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/does not expose/);
+      expect(isKnitError(e) && e.message).toMatch(/does not expose/);
     }
   });
 

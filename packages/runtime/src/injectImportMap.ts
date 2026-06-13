@@ -1,4 +1,4 @@
-import { FedkitError } from "./errors.js";
+import { KnitError } from "./errors.js";
 import type { ImportMap } from "./manifest.js";
 
 /**
@@ -10,7 +10,7 @@ import type { ImportMap } from "./manifest.js";
  */
 export function injectImportMap(map: ImportMap): void {
   if (typeof document === "undefined") {
-    throw new FedkitError(
+    throw new KnitError(
       "KNIT_ERR_IMPORT_MAP_INJECTION_FAILED",
       "injectImportMap requires a DOM (document is undefined).",
       "Use this function only in the browser. For Node, use @knitkit/node.",

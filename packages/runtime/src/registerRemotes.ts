@@ -1,4 +1,4 @@
-import { FedkitError } from "./errors.js";
+import { KnitError } from "./errors.js";
 import { validateManifest, type Manifest } from "./manifest.js";
 import { negotiateShared, type NegotiationResult, type HostSharedDecl } from "./negotiate.js";
 import { injectImportMap } from "./injectImportMap.js";
@@ -27,14 +27,14 @@ async function fetchManifest(input: RegisterRemotesInput): Promise<{ name: strin
   try {
     res = await fetch(url, { credentials: "same-origin" });
   } catch (e) {
-    throw new FedkitError(
+    throw new KnitError(
       "KNIT_ERR_LOAD_FAILED",
       `Failed to fetch manifest for "${input.name}" at ${url}: ${(e as Error).message}`,
       `Check that the URL is reachable and CORS is configured.`,
     );
   }
   if (!res.ok) {
-    throw new FedkitError(
+    throw new KnitError(
       "KNIT_ERR_LOAD_FAILED",
       `Failed to fetch manifest for "${input.name}" at ${url}: HTTP ${res.status}`,
       `Verify the manifest is served and the URL is correct.`,

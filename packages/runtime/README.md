@@ -14,7 +14,7 @@ import {
   injectImportMap,
   getShareInfo,
   validateManifest,
-  FedkitError,
+  KnitError,
 } from "@knitkit/runtime";
 
 await registerRemotes(
@@ -76,7 +76,7 @@ Do **not** do this:
 
 ## Errors
 
-All errors are coded. Catch `FedkitError` and inspect `.code` and `.suggestion`:
+All errors are coded. Catch `KnitError` and inspect `.code` and `.suggestion`:
 
 | Code | Meaning |
 | --- | --- |

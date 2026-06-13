@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { validateManifest } from "../src/manifest.js";
-import { isFedkitError } from "../src/errors.js";
+import { isKnitError } from "../src/errors.js";
 
 describe("validateManifest", () => {
   it("accepts a minimal valid manifest", () => {
@@ -21,7 +21,7 @@ describe("validateManifest", () => {
       validateManifest("not an object", "inline");
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
+      expect(isKnitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
     }
   });
 
@@ -33,7 +33,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/spec/);
+      expect(isKnitError(e) && e.message).toMatch(/spec/);
     }
   });
 
@@ -45,7 +45,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/name/);
+      expect(isKnitError(e) && e.message).toMatch(/name/);
     }
   });
 
@@ -57,7 +57,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/exposes/);
+      expect(isKnitError(e) && e.message).toMatch(/exposes/);
     }
   });
 
@@ -69,7 +69,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/shared/);
+      expect(isKnitError(e) && e.message).toMatch(/shared/);
     }
   });
 
@@ -81,7 +81,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/expose entry/);
+      expect(isKnitError(e) && e.message).toMatch(/expose entry/);
     }
   });
 
@@ -98,7 +98,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/requiredVersion/);
+      expect(isKnitError(e) && e.message).toMatch(/requiredVersion/);
     }
   });
 
@@ -138,8 +138,8 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
-      expect(isFedkitError(e) && e.message).toMatch(/version/);
+      expect(isKnitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
+      expect(isKnitError(e) && e.message).toMatch(/version/);
     }
   });
 
@@ -151,8 +151,8 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
-      expect(isFedkitError(e) && e.message).toMatch(/requiredVersion/);
+      expect(isKnitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
+      expect(isKnitError(e) && e.message).toMatch(/requiredVersion/);
     }
   });
 
@@ -164,7 +164,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/url/);
+      expect(isKnitError(e) && e.message).toMatch(/url/);
     }
   });
 
@@ -176,7 +176,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.message).toMatch(/singleton/);
+      expect(isKnitError(e) && e.message).toMatch(/singleton/);
     }
   });
 });

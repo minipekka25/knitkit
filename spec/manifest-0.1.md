@@ -111,4 +111,4 @@ All relative URLs (`url`, `types`) resolve against the manifest's own URL. The r
 
 ## Validation
 
-`@knitkit/runtime` exports `validateManifest(input, sourceLabel)`. The function throws `FedkitError` with code `KNIT_ERR_MANIFEST_INVALID` and a precise `.message` + `.suggestion`. The CLI uses the same function (re-exported, not duplicated) to validate manifests on disk.
+`@knitkit/runtime` exports `validateManifest(input, sourceLabel)`. The function throws `KnitError` with code `KNIT_ERR_MANIFEST_INVALID` and a precise `.message` + `.suggestion`. The CLI uses the same function (re-exported, not duplicated) to validate manifests on disk.

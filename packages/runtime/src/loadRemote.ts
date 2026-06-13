@@ -1,4 +1,4 @@
-import { FedkitError } from "./errors.js";
+import { KnitError } from "./errors.js";
 import type { Manifest } from "./manifest.js";
 
 export interface RemoteRegistration {
@@ -45,7 +45,7 @@ export function loadRemote<T = unknown>(specifier: string): Promise<T>;
 export async function loadRemote(specifier: string): Promise<unknown> {
   const slash = specifier.indexOf("/");
   if (slash <= 0 || slash === specifier.length - 1) {
-    throw new FedkitError(
+    throw new KnitError(
       "KNIT_ERR_LOAD_FAILED",
       `Invalid specifier "${specifier}". Expected "<remoteName>/<exposeKey>".`,
       `Example: loadRemote("checkout/CartWidget")`,
@@ -56,7 +56,7 @@ export async function loadRemote(specifier: string): Promise<unknown> {
   const ensureKey = exposeKey.startsWith("./") ? exposeKey : `./${exposeKey}`;
   const remote = registered.find((r) => r.name === remoteName);
   if (!remote) {
-    throw new FedkitError(
+    throw new KnitError(
       "KNIT_ERR_NOT_REGISTERED",
       `Remote "${remoteName}" is not registered.`,
       `Call registerRemotes() with this remote's manifest first.`,
@@ -64,7 +64,7 @@ export async function loadRemote(specifier: string): Promise<unknown> {
   }
   const expose = remote.manifest.exposes[ensureKey];
   if (!expose) {
-    throw new FedkitError(
+    throw new KnitError(
       "KNIT_ERR_LOAD_FAILED",
       `Remote "${remoteName}" does not expose "${ensureKey}".`,
       `Available: ${Object.keys(remote.manifest.exposes).join(", ") || "(none)"}`,
@@ -75,7 +75,7 @@ export async function loadRemote(specifier: string): Promise<unknown> {
     const mod = (await import(/* @vite-ignore */ url)) as { default?: unknown } & Record<string, unknown>;
     return mod.default ?? mod;
   } catch (e) {
-    throw new FedkitError(
+    throw new KnitError(
       "KNIT_ERR_LOAD_FAILED",
       `Failed to load module "${specifier}" from ${url}: ${(e as Error).message}`,
       `Check the remote's built artifact, network access, and CORS.`,

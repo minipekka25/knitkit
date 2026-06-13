@@ -1,6 +1,6 @@
 import { describe, expect, it, afterEach } from "vitest";
 import { injectImportMap } from "../src/injectImportMap.js";
-import { isFedkitError } from "../src/errors.js";
+import { isKnitError } from "../src/errors.js";
 
 interface FakeScript {
   type: string;
@@ -63,7 +63,7 @@ describe("injectImportMap", () => {
       injectImportMap({ imports: {} });
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_IMPORT_MAP_INJECTION_FAILED");
+      expect(isKnitError(e) && e.code).toBe("KNIT_ERR_IMPORT_MAP_INJECTION_FAILED");
     }
   });
 });

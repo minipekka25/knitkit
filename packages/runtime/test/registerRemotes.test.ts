@@ -2,7 +2,7 @@ import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import { registerRemotes, getLastResult } from "../src/registerRemotes.js";
 import { loadRemote } from "../src/loadRemote.js";
 import type { Manifest } from "../src/manifest.js";
-import { isFedkitError } from "../src/errors.js";
+import { isKnitError } from "../src/errors.js";
 
 interface FakeScript {
   type: string;
@@ -81,7 +81,7 @@ describe("registerRemotes", () => {
       await registerRemotes([{ name: "checkout", manifest: "https://down.example.com/m.json" }]);
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_LOAD_FAILED");
+      expect(isKnitError(e) && e.code).toBe("KNIT_ERR_LOAD_FAILED");
     }
   });
 
@@ -92,8 +92,8 @@ describe("registerRemotes", () => {
       await registerRemotes([{ name: "checkout", manifest: "https://cdn/m.json" }]);
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_LOAD_FAILED");
-      expect(isFedkitError(e) && e.message).toMatch(/404/);
+      expect(isKnitError(e) && e.code).toBe("KNIT_ERR_LOAD_FAILED");
+      expect(isKnitError(e) && e.message).toMatch(/404/);
     }
   });
 });

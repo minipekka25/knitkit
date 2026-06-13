@@ -1,4 +1,4 @@
-export type FedkitErrorCode =
+export type KnitErrorCode =
   | "KNIT_ERR_NEGOTIATION_CONFLICT"
   | "KNIT_ERR_SINGLETON_CONFLICT"
   | "KNIT_ERR_MANIFEST_INVALID"
@@ -6,18 +6,33 @@ export type FedkitErrorCode =
   | "KNIT_ERR_NOT_REGISTERED"
   | "KNIT_ERR_IMPORT_MAP_INJECTION_FAILED";
 
-export class FedkitError extends Error {
-  readonly code: FedkitErrorCode;
+export class KnitError extends Error {
+  readonly code: KnitErrorCode;
   readonly suggestion?: string;
 
-  constructor(code: FedkitErrorCode, message: string, suggestion?: string) {
+  constructor(code: KnitErrorCode, message: string, suggestion?: string) {
     super(message);
-    this.name = "FedkitError";
+    this.name = "KnitError";
     this.code = code;
     this.suggestion = suggestion;
   }
 }
 
-export function isFedkitError(e: unknown): e is FedkitError {
-  return e instanceof FedkitError;
+export function isKnitError(e: unknown): e is KnitError {
+  return e instanceof KnitError;
 }
+
+/**
+ * @deprecated Renamed to {@link KnitError}. This alias will be removed in a future
+ * minor release. Update imports to `KnitError`.
+ */
+export const FedkitError = KnitError;
+/**
+ * @deprecated Renamed to {@link isKnitError}. This alias will be removed in a future
+ * minor release. Update imports to `isKnitError`.
+ */
+export const isFedkitError = isKnitError;
+/**
+ * @deprecated Renamed to {@link KnitErrorCode}.
+ */
+export type FedkitErrorCode = KnitErrorCode;
