@@ -3,6 +3,7 @@ import { mkdtempSync, writeFileSync, rmSync, readFileSync, existsSync, readdirSy
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
+import { execFileSync } from "node:child_process";
 import { buildCommand } from "../src/commands/build.js";
 import { validateCommand } from "../src/commands/validate.js";
 
@@ -65,13 +66,16 @@ describe("knitkit build", () => {
 
     // Regression guard: the bundle must contain the package's ACTUAL code, not its
     // package.json. Importing it must yield React's real surface (createElement/version),
-    // not { name, main, type }.
-    const mod = await import(pathToFileURL(join(sharedDir, reactFile)).href);
-    const React = mod.default;
-    expect(typeof React).toBe("object");
-    expect(typeof React.createElement).toBe("function");
-    expect(React.version).toBe("18.3.1");
-    expect(React).not.toHaveProperty("main");
+    // not { name, main, type }. Execute it in a real Node process (not via vitest/vite,
+    // which mangles absolute temp-dir file URLs on Windows).
+    const url = pathToFileURL(join(sharedDir, reactFile)).href;
+    const probe = `import(${JSON.stringify(url)}).then((m)=>{const R=m.default;process.stdout.write(JSON.stringify({type:typeof R,createElement:typeof R.createElement,version:R.version,hasMain:"main" in R}));}).catch((e)=>{process.stderr.write(String(e));process.exit(1);})`;
+    const out = execFileSync(process.execPath, ["--input-type=module", "-e", probe], { encoding: "utf8" });
+    const info = JSON.parse(out);
+    expect(info.type).toBe("object");
+    expect(info.createElement).toBe("function");
+    expect(info.version).toBe("18.3.1");
+    expect(info.hasMain).toBe(false);
   });
 });
 
