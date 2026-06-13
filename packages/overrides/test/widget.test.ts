@@ -46,6 +46,28 @@ describe("mountOverridesWidget", () => {
     expect(getOverrides()).toEqual({});
   });
 
+  it("shows a hint when no remotes are provided", () => {
+    unmount = mountOverridesWidget();
+    const panel = q("fedkit-overrides-panel") as HTMLElement;
+    expect(panel.textContent).toMatch(/No remotes provided/i);
+    expect(document.querySelectorAll('[data-testid="fedkit-override-row"]').length).toBe(0);
+  });
+
+  it("'Clear all & reload' wipes every override", () => {
+    setOverride("a", "http://localhost:1/m.json");
+    setOverride("b", "http://localhost:2/m.json");
+    unmount = mountOverridesWidget({ remotes: ["a", "b"] });
+    (q("fedkit-overrides-clear-all") as HTMLButtonElement).click();
+    expect(getOverrides()).toEqual({});
+  });
+
+  it("ignores an empty 'Use local' input", () => {
+    unmount = mountOverridesWidget({ remotes: ["checkout"] });
+    (q("fedkit-override-input") as HTMLInputElement).value = "   ";
+    (q("fedkit-override-apply") as HTMLButtonElement).click();
+    expect(getOverrides()).toEqual({});
+  });
+
   it("includes remotes that only exist as overrides", () => {
     setOverride("legacy", "http://localhost:6000/fed.manifest.json");
     unmount = mountOverridesWidget({ remotes: ["checkout"] });

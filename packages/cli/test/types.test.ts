@@ -6,7 +6,6 @@ import {
   rmSync,
   readFileSync,
   existsSync,
-  mkdirSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname, resolve } from "node:path";

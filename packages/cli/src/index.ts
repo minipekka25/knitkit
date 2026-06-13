@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 import { buildCommand } from "./commands/build.js";
 import { validateCommand } from "./commands/validate.js";
 import { typesGenerateCommand } from "./commands/typesGenerate.js";
@@ -19,7 +20,7 @@ function help(): void {
   );
 }
 
-async function main(argv: string[]): Promise<number> {
+export async function main(argv: string[]): Promise<number> {
   const cmd = argv[2];
   if (!cmd || cmd === "help" || cmd === "--help" || cmd === "-h") {
     help();
@@ -65,10 +66,13 @@ async function main(argv: string[]): Promise<number> {
   return 2;
 }
 
-main(process.argv).then(
-  (code) => process.exit(code),
-  (e) => {
-    process.stderr.write(`fedkit: ${(e as Error).message}\n`);
-    process.exit(1);
-  },
-);
+// Run only when invoked as the CLI (not when imported by tests).
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main(process.argv).then(
+    (code) => process.exit(code),
+    (e) => {
+      process.stderr.write(`fedkit: ${(e as Error).message}\n`);
+      process.exit(1);
+    },
+  );
+}

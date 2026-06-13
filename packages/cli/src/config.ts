@@ -2,8 +2,6 @@ import { readFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { createRequire } from "node:module";
 
-const require = createRequire(import.meta.url);
-
 export interface FedConfig {
   name: string;
   shared: string[];

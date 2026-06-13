@@ -139,6 +139,23 @@ describe("negotiateShared", () => {
       expect(result.report.packages.lodash!.conflict).toBe(true);
       expect(Object.keys(result.scopes).length).toBeGreaterThan(0);
     });
+
+    it("picks the most-requested major and scopes only the true outlier (3 participants)", () => {
+      const mk = (name: string, version: string, range: string) =>
+        manifest({
+          name,
+          shared: { lodash: { version, requiredVersion: range, singleton: false, url: `./lodash-${version}.js` } },
+        });
+      const result = negotiateShared([
+        { name: "a", manifest: mk("a", "4.17.21", "^4.0.0"), baseUrl: "https://x/a/" },
+        { name: "b", manifest: mk("b", "4.0.0", "^4.0.0"), baseUrl: "https://x/b/" },
+        { name: "c", manifest: mk("c", "3.10.1", "^3.0.0"), baseUrl: "https://x/c/" },
+      ]);
+      // ^4 is the majority (2 of 3) and 4.17.21 is its highest version.
+      expect(result.winners.lodash!.version).toBe("4.17.21");
+      // b (^4.0.0) is satisfied by the winner → shares it; only c (^3) needs its own copy.
+      expect(result.report.packages.lodash!.fallbacks.map((f) => f.from)).toEqual(["c"]);
+    });
   });
 
   describe("singleton conflict -> coded error", () => {

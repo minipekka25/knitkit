@@ -1,4 +1,3 @@
-import { FedkitError } from "./errors.js";
 import type { NegotiationResult, ResolutionReport } from "./negotiate.js";
 
 let lastResult: NegotiationResult | null = null;

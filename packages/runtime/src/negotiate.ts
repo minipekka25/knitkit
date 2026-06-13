@@ -147,9 +147,11 @@ export function negotiateShared(
       );
     }
 
-    // Non-singleton: pick the highest version that satisfies the majority.
+    // Non-singleton: pick the entry whose range the most participants' versions satisfy
+    // (the majority), breaking ties by the higher version.
+    const popularity = (range: string) => entries.filter((e) => satisfies(e.version, range)).length;
     const sortedByRange = [...entries].sort(
-      (a, b) => entries.filter((e) => satisfies(e.version, b.range)).length - entries.filter((e) => satisfies(a.version, b.range)).length,
+      (a, b) => popularity(b.range) - popularity(a.range) || compareVersionStrings(b.version, a.version),
     );
     const winnerEntry = sortedByRange[0]!;
     winners[pkg] = {
@@ -160,7 +162,9 @@ export function negotiateShared(
     };
     const fallbacks: PackageReport["fallbacks"] = [];
     for (const e of entries) {
-      if (e === winnerEntry) continue;
+      // Only the outliers the winner can't satisfy need their own copy via scopes; a
+      // participant already compatible with the winner shares it (no redundant dual-load).
+      if (e === winnerEntry || satisfies(winnerEntry.version, e.range)) continue;
       const scopeKey = resolveUrlScope(entries, e.from);
       (scopes[scopeKey] ??= {})[pkg] = e.url;
       fallbacks.push({ from: e.from, range: e.range, version: e.version, url: e.url });
@@ -168,7 +172,7 @@ export function negotiateShared(
     report.packages[pkg] = {
       winner: { version: winnerEntry.version, url: winnerEntry.url, source: winnerEntry.from },
       fallbacks,
-      conflict: true,
+      conflict: fallbacks.length > 0,
     };
   }
 
