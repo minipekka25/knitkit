@@ -1,0 +1,42 @@
+{
+  "name": "create-knitkit",
+  "version": "0.0.0",
+  "description": "Scaffold a runnable knitkit starter (host + remote, shared singleton) in one command.",
+  "type": "module",
+  "bin": {
+    "create-knitkit": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "template"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "knitkit",
+    "module-federation",
+    "import-maps",
+    "create",
+    "starter"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minipekka25/knitkit.git",
+    "directory": "packages/create-knitkit"
+  },
+  "homepage": "https://github.com/minipekka25/knitkit/tree/main/packages/create-knitkit#readme",
+  "bugs": "https://github.com/minipekka25/knitkit/issues",
+  "license": "MIT"
+}

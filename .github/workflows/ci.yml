@@ -27,6 +27,7 @@ jobs:
       - run: npm run --workspace=@knitkit/react build
       - run: npm run --workspace=@knitkit/overrides build
       - run: npm run --workspace=@knitkit/edge build
+      - run: npm run --workspace=create-knitkit build
       # Package unit tests only. The example's Playwright smoke test is network-
       # dependent (esm.sh) and browser-dependent; it is run locally (see README),
       # not as a CI gate.
@@ -36,6 +37,7 @@ jobs:
       - run: npm run --workspace=@knitkit/react test
       - run: npm run --workspace=@knitkit/overrides test
       - run: npm run --workspace=@knitkit/edge test
+      - run: npm run --workspace=create-knitkit test
       - run: node packages/cli/dist/index.js validate spec/examples/checkout.manifest.json
       - run: npm run --workspace=@knitkit/runtime size
         if: matrix.os == 'ubuntu-latest'

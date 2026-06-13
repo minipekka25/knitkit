@@ -1,0 +1,11 @@
+{
+  "name": "knitkit-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A knitkit starter: a host that loads a remote at runtime, sharing one module instance.",
+  "scripts": {
+    "dev": "node serve.mjs",
+    "start": "node serve.mjs"
+  }
+}

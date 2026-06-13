@@ -6,6 +6,18 @@ description: "Install knitkit, build a remote, load it from a host, and type it.
 knitkit is runtime-first module federation on native ES modules + import maps. There is no
 bundler plugin to install — you ship a runtime, a manifest, and a small CLI.
 
+## Quickest start
+
+Scaffold a runnable host + remote (shared singleton, no build step) in one command:
+
+```bash
+npm create knitkit@latest my-app
+cd my-app
+npm run dev          # http://localhost:8080
+```
+
+Then read on to build your own remotes and load them from a host.
+
 ## Install
 
 ```bash

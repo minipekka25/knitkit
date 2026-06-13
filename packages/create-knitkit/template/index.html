@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>my knitkit app</title>
+    <!--
+      One import map. @knitkit/runtime is loaded from the CDN (the real published package);
+      "shared-store" is the shared module both the host and the remote resolve to. The map is
+      in place before the first import, as knitkit requires. No bundler, no build step.
+    -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@knitkit/runtime": "https://esm.sh/@knitkit/runtime@0.1",
+          "shared-store": "/shared/store.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import { registerRemotes } from "@knitkit/runtime";
+      await registerRemotes([{ name: "widgets", manifest: "/remote/knit.manifest.json" }]);
+      await import("/src/main.js");
+    </script>
+  </head>
+  <body style="font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px">
+    <div id="root">loading…</div>
+  </body>
+</html>
