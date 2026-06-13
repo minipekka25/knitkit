@@ -1,6 +1,6 @@
 {
   "name": "@knitkit/runtime",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Runtime-first, bundler-agnostic module federation on native ESM + import maps.",
   "type": "module",
   "main": "./dist/index.js",
