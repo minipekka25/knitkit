@@ -61,4 +61,4 @@ Representative result (run it for current numbers):
 So MF adds roughly **7–8× more federation code** to a host. The honest framing, though, isn't
 only bytes: MF's overhead is bundler-generated per app (a container entry, share-scope
 bootstrap, module wrappers), whereas knitkit's is a single shared runtime + a static, inspectable
-import map. Re-verify before quoting publicly (`project_brief.md` §9); versions move.
+import map. Re-verify before quoting publicly; versions move.

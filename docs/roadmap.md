@@ -47,5 +47,4 @@ Honest status. knitkit is pre-1.0, published under the `@knitkit/*` npm scope.
 ## Won't build
 
 Cross-remote HMR; module-level RSC/Flight federation; React Native; maintained Webpack/Rspack/
-Vite plugins; automatic transitive sharing; patching framework internals. See
-`project_brief.md` §6.
+Vite plugins; automatic transitive sharing; patching framework internals.

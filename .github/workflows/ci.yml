@@ -28,8 +28,8 @@ jobs:
       - run: npm run --workspace=@knitkit/overrides build
       - run: npm run --workspace=@knitkit/edge build
       # Package unit tests only. The example's Playwright smoke test is network-
-      # dependent (esm.sh) and browser-dependent; it is run locally (see README /
-      # project_brief §9), not as a CI gate.
+      # dependent (esm.sh) and browser-dependent; it is run locally (see README),
+      # not as a CI gate.
       - run: npm run --workspace=@knitkit/runtime test
       - run: npm run --workspace=@knitkit/cli test
       - run: npm run --workspace=@knitkit/node test

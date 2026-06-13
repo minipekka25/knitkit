@@ -7,8 +7,7 @@
 > cd docs && npx mint@latest dev      # http://localhost:3000
 > ```
 >
-> The page files below double as plain Markdown for GitHub viewing. (Docs-site framework
-> decision, `project_brief.md` §10.3: **Mintlify**.)
+> The page files below double as plain Markdown for GitHub viewing.
 
 ## Start here
 
@@ -38,5 +37,5 @@
 - [`react-host-react-remote`](../examples/react-host-react-remote) — `<RemoteComponent>`, shared React.
 - [`node-ssr`](../examples/node-ssr) — SSR of a federated React component.
 
-> **Verify-before-publishing (brief §9):** browser-support and competitor claims in these
+> **Verify before publishing:** browser-support and competitor claims in these
 > docs are anchored to named versions and dates; re-check them at publish time.

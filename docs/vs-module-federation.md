@@ -47,4 +47,4 @@ instance. There is no share scope to misconfigure, and nothing is shared silentl
 - **Use knitkit** if you want a small, standards-native primitive you can read in an afternoon,
   identical behavior across browser/SSR/edge, and a shared surface you can see.
 
-*(Figures and dates above are anchored to named versions; re-verify before publishing — brief §9.)*
+*(Figures and dates above are anchored to named versions; re-verify before publishing.)*

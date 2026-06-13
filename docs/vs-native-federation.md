@@ -30,4 +30,4 @@ This is a friendly space. If you are an Angular shop already happy with Native F
 there's little reason to switch. knitkit is for teams that want the import-map approach without
 an Angular-shaped toolchain, and that need SSR/edge parity.
 
-*(Re-verify project descriptions before publishing — brief §9.)*
+*(Re-verify project descriptions before publishing.)*

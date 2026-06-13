@@ -4,7 +4,7 @@ One page assembled at the edge from **independent apps** — a React fragment an
 framework-less HTML fragment — stitched by [`@knitkit/edge`](../../packages/edge/README.md),
 with the import map injected by the gateway. No shared runtime; each fragment is its own app.
 
-This is **Tier-2** federation (`project_brief.md` §3.7): unlike Tier-1 `<RemoteComponent>`
+This is **Tier-2** federation: unlike Tier-1 `<RemoteComponent>`
 (which shares one React), each fragment renders itself and is composed as HTML — so there's
 **no "invalid hook call"** concern and apps can use entirely different frameworks (or none).
 
