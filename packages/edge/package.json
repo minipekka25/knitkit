@@ -1,6 +1,6 @@
 {
   "name": "@knitkit/edge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Edge composition for knitkit: ESI-style HTML stream stitching for Cloudflare Workers / Deno Deploy / Vercel Edge.",
   "type": "module",
   "main": "./dist/index.js",
@@ -23,7 +23,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@knitkit/runtime": "^0.1.0"
+    "@knitkit/runtime": "^0.2.0"
   },
   "devDependencies": {
     "tsup": "^8.1.0",

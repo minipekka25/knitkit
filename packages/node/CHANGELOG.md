@@ -1,5 +1,13 @@
 # @knitkit/node
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [c785c50]
+- Updated dependencies [ac4ae11]
+  - @knitkit/runtime@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes

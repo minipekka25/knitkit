@@ -1,5 +1,19 @@
 # @knitkit/cli
 
+## 0.1.1
+
+### Patch Changes
+
+- c785c50: Rename the public error type to `KnitError` / `isKnitError` / `KnitErrorCode`.
+
+  The old `FedkitError` / `isFedkitError` / `FedkitErrorCode` names are kept as deprecated
+  aliases that point at the renamed symbols, so existing `catch` code keeps working. They will
+  be removed in a future minor — update imports to the `Knit*` names.
+
+- Updated dependencies [c785c50]
+- Updated dependencies [ac4ae11]
+  - @knitkit/runtime@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes
