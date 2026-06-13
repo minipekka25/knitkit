@@ -16,7 +16,7 @@ async function exists(p: string): Promise<boolean> {
 }
 
 beforeEach(async () => {
-  work = await mkdtemp(join(tmpdir(), "create-knitkit-"));
+  work = await mkdtemp(join(tmpdir(), "knitkit-create-"));
   vi.spyOn(process.stdout, "write").mockImplementation(() => true);
   vi.spyOn(process.stderr, "write").mockImplementation(() => true);
 });
@@ -26,7 +26,7 @@ afterEach(async () => {
   await rm(work, { recursive: true, force: true });
 });
 
-describe("create-knitkit", () => {
+describe("@knitkit/create", () => {
   it("scaffolds a complete, runnable starter", async () => {
     const dest = join(work, "My-App");
     await main([dest]);

@@ -11,7 +11,7 @@ bundler plugin to install — you ship a runtime, a manifest, and a small CLI.
 Scaffold a runnable host + remote (shared singleton, no build step) in one command:
 
 ```bash
-npm create knitkit@latest my-app
+npm create @knitkit my-app
 cd my-app
 npm run dev          # http://localhost:8080
 ```

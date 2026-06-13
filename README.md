@@ -39,11 +39,11 @@ That's the whole contract: declare remotes by manifest URL, `loadRemote` an expo
 ## Try it in one command
 
 ```bash
-npm create knitkit@latest my-app && cd my-app && npm run dev
+npm create @knitkit my-app && cd my-app && npm run dev
 ```
 
 Scaffolds a runnable host + remote (shared singleton, no build step) and serves it at
-`localhost:8080`. See [`create-knitkit`](./packages/create-knitkit).
+`localhost:8080`. See [`@knitkit/create`](./packages/create).
 
 ## Live demo
 
@@ -114,7 +114,7 @@ If you want a bundler plugin that does everything, use Module Federation. If you
 | [`@knitkit/react`](./packages/react) | ✅ MVP | Thin `"use client"` `<RemoteComponent>` wrapper (lazy + Suspense + error boundary) over `loadRemote`. |
 | [`@knitkit/overrides`](./packages/overrides) | ✅ MVP | Local-override dev tool: point a remote at `localhost` against deployed others (localStorage + UI widget). |
 | [`@knitkit/edge`](./packages/edge) | ✅ MVP | ESI-style HTML fragment stream-stitching + import-map injection for Workers / Deno / Vercel Edge. |
-| [`create-knitkit`](./packages/create-knitkit) | ✅ MVP | `npm create knitkit my-app` — scaffolds a runnable host + remote starter. |
+| [`@knitkit/create`](./packages/create) | ✅ MVP | `npm create @knitkit my-app` — scaffolds a runnable host + remote starter. |
 
 The **manifest spec** lives in [`/spec`](./spec/manifest-0.1.md) and is versioned from day one.
 

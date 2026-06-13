@@ -1,14 +1,14 @@
-# `create-knitkit`
+# `@knitkit/create`
 
 Scaffold a runnable [knitkit](https://github.com/minipekka25/knitkit) starter in one command.
 
 ```bash
-npm create knitkit@latest my-app
+npm create @knitkit my-app
 cd my-app
 npm run dev          # http://localhost:8080
 ```
 
-(or `pnpm create knitkit my-app`, `yarn create knitkit my-app`, `bun create knitkit my-app`)
+(or `pnpm create @knitkit my-app`, `yarn create @knitkit my-app`, `bun create @knitkit my-app`)
 
 You get a host that `loadRemote()`s a remote behind its own manifest, sharing one module
 instance across the boundary — **no bundler plugin, no build step**. Open DevTools → Network to
@@ -32,7 +32,7 @@ The runtime is loaded from a CDN, so the demo runs with zero install.
 ## Usage
 
 ```
-npm create knitkit@latest [dir] [--force]
+npm create @knitkit [dir] [--force]
 ```
 
 - `dir` — target directory (default `knitkit-app`). The scaffolded `package.json` name is

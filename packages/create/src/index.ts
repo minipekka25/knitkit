@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const TEMPLATE_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..", "template");
 
 function die(code: number, message: string, hint?: string): never {
-  process.stderr.write(`\n  create-knitkit: ${message}\n`);
+  process.stderr.write(`\n  @knitkit/create: ${message}\n`);
   if (hint) process.stderr.write(`  ${hint}\n`);
   process.stderr.write("\n");
   process.exit(code);
@@ -18,7 +18,7 @@ function parseArgs(argv: string[]): { target: string; force: boolean } {
   for (const arg of argv) {
     if (arg === "--force" || arg === "-f") force = true;
     else if (arg === "--help" || arg === "-h") {
-      process.stdout.write("\n  Usage: npm create knitkit [dir] [--force]\n\n");
+      process.stdout.write("\n  Usage: npm create @knitkit [dir] [--force]\n\n");
       process.exit(0);
     } else if (!arg.startsWith("-") && target === undefined) target = arg;
   }

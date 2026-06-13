@@ -1,10 +1,10 @@
 {
-  "name": "create-knitkit",
-  "version": "0.1.0",
+  "name": "@knitkit/create",
+  "version": "0.0.0",
   "description": "Scaffold a runnable knitkit starter (host + remote, shared singleton) in one command.",
   "type": "module",
   "bin": {
-    "create-knitkit": "./dist/index.js"
+    "knitkit-create": "./dist/index.js"
   },
   "files": [
     "dist",
@@ -34,9 +34,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/minipekka25/knitkit.git",
-    "directory": "packages/create-knitkit"
+    "directory": "packages/create"
   },
-  "homepage": "https://github.com/minipekka25/knitkit/tree/main/packages/create-knitkit#readme",
+  "homepage": "https://github.com/minipekka25/knitkit/tree/main/packages/create#readme",
   "bugs": "https://github.com/minipekka25/knitkit/issues",
   "license": "MIT"
 }
