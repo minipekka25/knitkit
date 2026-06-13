@@ -21,7 +21,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
     "@size-limit/preset-small-lib": "^11.1.2",
-    "@vitest/coverage-v8": "^1.6.1",
+    "@vitest/coverage-v8": "^4.1.8",
     "concurrently": "^10.0.3",
     "esbuild": "^0.21.5",
     "size-limit": "^11.1.2",
