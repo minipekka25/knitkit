@@ -23,18 +23,16 @@ Honest status. knitkit is pre-1.0, published under the `@knitkit/*` npm scope.
   the [edge-composition example](../examples/edge-composition) (independent apps stitched at the
   edge). Isolated fragments, each its own framework — no shared React.
 - **Examples** — React+Vue, React `<RemoteComponent>`, Node SSR, and edge composition, each with a smoke test.
-- **Docs site** — published with Mintlify (`docs/docs.json`).
-- **Release discipline** — changesets configured; `0.1.0` pending the GitHub repo + npm scope publish.
+- **Docs site** — published with Mintlify ([knitkit.mintlify.app](https://knitkit.mintlify.app)).
+- **Next.js App Router** — zero-config remote embedding via `<RemoteFragment>` (the
+  [nextjs-host](../examples/nextjs-host) example). Shared-React `<RemoteComponent>` in Next needs
+  extra config (Next bundles its own React) and is documented there as the non-zero-config path.
+- **Published to npm** — `0.1.0` of all six packages, with provenance; releases automated via Changesets.
 
 ## Next
 
-- **Next.js App Router story** — needs an honest resolution first. A true shared-React
-  `<RemoteComponent>` inside Next is **not** zero-config: Next bundles its own React, so a
-  federated remote's `import "react"` resolves to a CDN React via the import map → two React
-  instances → "invalid hook call". Sharing requires a `next.config.js` externals change. An
-  isolated, hooks-free remote widget can be embedded zero-config; the shared-React case is the
-  open item. (See the [`react-host-react-remote`](../examples/react-host-react-remote) example
-  notes — `<RemoteComponent>` works zero-config when the **host** owns the import map.)
+- A hosted, clickable live demo (StackBlitz/CodeSandbox) for the README.
+- Launch: a deep-dive post, Show HN, and community channel.
 
 ## Later
 

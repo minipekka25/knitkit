@@ -42,6 +42,7 @@ Two runnable examples (both zero bundler plugins, both with a self-booting Playw
 
 - [`examples/react-host-vue-remote`](./examples/react-host-vue-remote) — a **React host mounting a Vue 3 remote**, one shared state object proven identical across the framework boundary.
 - [`examples/react-host-react-remote`](./examples/react-host-react-remote) — a **React host rendering a React remote via `<RemoteComponent>`**, sharing one React instance so the remote's hooks work across the boundary.
+- [`examples/nextjs-host`](./examples/nextjs-host) — a **Next.js App Router** host embedding a remote with `<RemoteFragment>` and **zero `next.config` changes** (uses the published `@knitkit/react`).
 - [`examples/node-ssr`](./examples/node-ssr) — **Node SSR** of a federated React component via `@knitkit/node` loader hooks (SRI-verified), with the import map serialized for hydration parity.
 - [`examples/edge-composition`](./examples/edge-composition) — **Tier-2 edge composition**: independent apps (a React fragment + a framework-less fragment) stitched into one streamed page by `@knitkit/edge`.
 
@@ -69,7 +70,7 @@ One import map entry per shared package → one URL → one module instance in t
 | **Shared singletons** | One import map entry → one instance, by construction. | `singleton: true` + `requiredVersion` — powerful, but the canonical footgun. |
 | **Substrate** | Native import maps + ESM. | Bundler runtime + share scopes. |
 | **SSR** | Same manifest drives Node via `module.register` *(Phase 2)*. | Supported, but labeled experimental/hard by its own creator. |
-| **Next.js App Router** | Loads a remote with zero `next.config.js` changes *(Phase 2 demo)*. | `nextjs-mf` is EOL/maintenance. |
+| **Next.js App Router** | Embed an isolated remote with **zero `next.config` changes** (`<RemoteFragment>`, [demo](./examples/nextjs-host)); shared-React `<RemoteComponent>` needs extra config (Next bundles its own React). | `nextjs-mf` is EOL/maintenance. |
 | **Edge** | Same manifest, native import maps on Deno/Workers *(Phase 3)*. | Not a first-class target. |
 | **Types** | `.d.ts` published next to the manifest, synced to the host *(Phase 2)*. | Strong — TS hints are a praised MF feature. |
 | **Core size** | < 5 KB min+gzip, zero deps. | Larger; bundler-embedded. |
@@ -79,7 +80,7 @@ MF 2.0 is genuinely capable (decoupled runtime, manifest, TS hints, devtools). `
 ## Roadmap (honest)
 
 - **Week 1 — Minimal Lovable MVP** *(done):* `@knitkit/runtime` (negotiation, import-map injection, `loadRemote`), the manifest spec v0.1, `@knitkit/cli` (emits shared ESM assets + manifest + SRI hashes from your `node_modules`), and the React-host / Vue-remote demo with a passing singleton smoke test.
-- **Weeks 2–4 — Production-credible v1:** `@knitkit/node` SSR via `module.register` with SRI enforcement, module cache, and hydration-parity import maps *(done)*; robust negotiation (x-ranges, `scopes` fallbacks, coded errors) *(done)*; `@knitkit/react` `<RemoteComponent>` *(done)*; `knitkit types generate` + `knitkit types sync` so `loadRemote()` is fully typed *(done)*; an SSR example rendering a federated React component *(done)*; `@knitkit/overrides` local-override dev widget *(done)*; still to come — a docs site and the Next.js App Router story (which needs a documented React-sharing approach — see the example notes).
+- **Weeks 2–4 — Production-credible v1:** `@knitkit/node` SSR via `module.register` with SRI enforcement, module cache, and hydration-parity import maps *(done)*; robust negotiation (x-ranges, `scopes` fallbacks, coded errors) *(done)*; `@knitkit/react` `<RemoteComponent>` *(done)*; `knitkit types generate` + `knitkit types sync` so `loadRemote()` is fully typed *(done)*; an SSR example rendering a federated React component *(done)*; `@knitkit/overrides` local-override dev widget *(done)*; a docs site *(done — [knitkit.mintlify.app](https://knitkit.mintlify.app))*; and a Next.js App Router demo *(done — zero-config via `<RemoteFragment>`)*.
 - **Months 2–3 — Traction & edge:** `@knitkit/edge` (ESI-style fragment composition for Workers/Deno/Vercel Edge), Tier-2 RSC fragment composition, a cold-load + bytes benchmark vs MF, and partnerships.
 
 ## When **not** to use this

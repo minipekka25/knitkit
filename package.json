@@ -15,7 +15,8 @@
   },
   "workspaces": [
     "packages/*",
-    "examples/*"
+    "examples/*",
+    "!examples/nextjs-host"
   ],
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
