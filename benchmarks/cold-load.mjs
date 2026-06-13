@@ -32,7 +32,7 @@ start(join(demo, "host", "serve.mjs"), HOST, { REMOTE_PORT: String(REMOTE) });
 
 let browser;
 try {
-  await waitFor(`http://localhost:${REMOTE}/fed.manifest.json`);
+  await waitFor(`http://localhost:${REMOTE}/knit.manifest.json`);
   await waitFor(`http://localhost:${HOST}/`);
 
   browser = await chromium.launch();
@@ -60,7 +60,7 @@ try {
     transferBytes: timing.transferBytes,
   };
 
-  console.log("\nfedkit — cold load (react-host-react-remote)\n");
+  console.log("\nknitkit — cold load (react-host-react-remote)\n");
   console.log("  time to remote visible :", timeToRemoteMs, "ms");
   console.log("  requests               :", timing.requests);
   console.log("  encoded bytes          :", (timing.encodedBytes / 1024).toFixed(1), "KB");

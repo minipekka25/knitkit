@@ -11,7 +11,7 @@ export interface RemoteInput {
  *
  * ```ts
  * await registerRemotes(applyOverrides([
- *   { name: "checkout", manifest: "https://cdn.example.com/checkout/fed.manifest.json" },
+ *   { name: "checkout", manifest: "https://cdn.example.com/checkout/knit.manifest.json" },
  * ]));
  * ```
  *

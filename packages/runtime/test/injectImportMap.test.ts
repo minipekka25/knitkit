@@ -63,7 +63,7 @@ describe("injectImportMap", () => {
       injectImportMap({ imports: {} });
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("FED_ERR_IMPORT_MAP_INJECTION_FAILED");
+      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_IMPORT_MAP_INJECTION_FAILED");
     }
   });
 });

@@ -28,14 +28,14 @@ async function fetchManifest(input: RegisterRemotesInput): Promise<{ name: strin
     res = await fetch(url, { credentials: "same-origin" });
   } catch (e) {
     throw new FedkitError(
-      "FED_ERR_LOAD_FAILED",
+      "KNIT_ERR_LOAD_FAILED",
       `Failed to fetch manifest for "${input.name}" at ${url}: ${(e as Error).message}`,
       `Check that the URL is reachable and CORS is configured.`,
     );
   }
   if (!res.ok) {
     throw new FedkitError(
-      "FED_ERR_LOAD_FAILED",
+      "KNIT_ERR_LOAD_FAILED",
       `Failed to fetch manifest for "${input.name}" at ${url}: HTTP ${res.status}`,
       `Verify the manifest is served and the URL is correct.`,
     );
@@ -44,7 +44,7 @@ async function fetchManifest(input: RegisterRemotesInput): Promise<{ name: strin
   const m = validateManifest(raw, url);
   // Use the resolved response URL as the base so relative `exposes`/`shared`
   // URLs resolve against the manifest's actual location (handles relative
-  // request URLs like "/federation/fed.manifest.json" in the browser).
+  // request URLs like "/federation/knit.manifest.json" in the browser).
   return { name: input.name, manifest: m, baseUrl: res.url || url };
 }
 

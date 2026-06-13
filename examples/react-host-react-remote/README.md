@@ -1,6 +1,6 @@
 # React host + React remote — `<RemoteComponent>`
 
-A React host renders a React remote with **`@fedkit/react`'s `<RemoteComponent>`**, sharing
+A React host renders a React remote with **`@knitkit/react`'s `<RemoteComponent>`**, sharing
 **one React instance** across the boundary via the import map. Zero bundler plugins.
 
 ```tsx
@@ -12,15 +12,15 @@ A React host renders a React remote with **`@fedkit/react`'s `<RemoteComponent>`
 The remote `Counter` uses `useState`. React hooks only work when the component renders with
 the **same** React instance as the host's reconciler. If React were duplicated you'd get
 *"Invalid hook call… more than one copy of React."* Here `react` is a single import-map
-entry, so the host, `@fedkit/react`, and the remote all resolve the same React — and the
+entry, so the host, `@knitkit/react`, and the remote all resolve the same React — and the
 counter increments. That's the singleton, by construction.
 
 ## Run it
 
 ```bash
 # from the repo root
-npm run --workspace=@fedkit/runtime build
-npm run --workspace=@fedkit/react build
+npm run --workspace=@knitkit/runtime build
+npm run --workspace=@knitkit/react build
 npm --prefix examples/react-host-react-remote test   # Playwright boots both servers
 ```
 

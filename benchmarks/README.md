@@ -1,12 +1,12 @@
 # Benchmarks
 
-Reproducible measurements of what fedkit costs. Run them yourself — we don't commit the
+Reproducible measurements of what knitkit costs. Run them yourself — we don't commit the
 generated numbers (they live in `results/`, gitignored).
 
 ```bash
 # build the packages first
-npm run --workspace=@fedkit/runtime build
-npm run --workspace=@fedkit/react build   # (and node/edge/overrides if measuring those)
+npm run --workspace=@knitkit/runtime build
+npm run --workspace=@knitkit/react build   # (and node/edge/overrides if measuring those)
 
 node benchmarks/bytes.mjs        # deterministic; CI-safe
 node benchmarks/cold-load.mjs    # boots the React demo in a real browser; local only
@@ -14,7 +14,7 @@ node benchmarks/cold-load.mjs    # boots the React demo in a real browser; local
 
 ## `bytes.mjs` — bytes shipped
 
-Production-minifies each `@fedkit/*` bundle (esbuild), then gzip + brotli compresses it — the
+Production-minifies each `@knitkit/*` bundle (esbuild), then gzip + brotli compresses it — the
 bytes that actually cross the wire. **Shared deps (react, etc.) are not counted**: an app
 ships those whether or not it federates, so they aren't federation overhead.
 
@@ -22,8 +22,8 @@ The headline is **federation overhead** — the JS a host loads purely to federa
 
 | | brotli |
 | --- | --- |
-| `@fedkit/runtime` only | ~3.5 KB |
-| `@fedkit/runtime` + `@fedkit/react` | ~4.2 KB |
+| `@knitkit/runtime` only | ~3.5 KB |
+| `@knitkit/runtime` + `@knitkit/react` | ~4.2 KB |
 
 (Run the script for exact, current numbers; the runtime figure cross-checks the `size-limit`
 CI gate of < 5 KB.)
@@ -56,9 +56,9 @@ Representative result (run it for current numbers):
 | Federation overhead a host ships (React shared/excluded) | raw | brotli |
 | --- | --- | --- |
 | **Module Federation 2.0** (delta: federated − non-federated host) | ~108 KB | **~27 KB** |
-| **fedkit** (`@fedkit/runtime`) | ~11 KB | **~3.5 KB** |
+| **knitkit** (`@knitkit/runtime`) | ~11 KB | **~3.5 KB** |
 
 So MF adds roughly **7–8× more federation code** to a host. The honest framing, though, isn't
 only bytes: MF's overhead is bundler-generated per app (a container entry, share-scope
-bootstrap, module wrappers), whereas fedkit's is a single shared runtime + a static, inspectable
+bootstrap, module wrappers), whereas knitkit's is a single shared runtime + a static, inspectable
 import map. Re-verify before quoting publicly (`project_brief.md` §9); versions move.

@@ -7,7 +7,7 @@ import { buildCommand } from "../src/commands/build.js";
 import { validateCommand } from "../src/commands/validate.js";
 
 function makeProject(): string {
-  const dir = mkdtempSync(join(tmpdir(), "fedkit-test-"));
+  const dir = mkdtempSync(join(tmpdir(), "knitkit-test-"));
   const cliRoot = join(import.meta.dirname, "..", "fixtures", "react-cjs");
   const nodeModules = join(dir, "node_modules", "react");
   mkdirSync(nodeModules, { recursive: true });
@@ -15,7 +15,7 @@ function makeProject(): string {
   copyFileSync(join(cliRoot, "index.cjs"), join(nodeModules, "index.cjs"));
 
   writeFileSync(
-    join(dir, "fed.config.json"),
+    join(dir, "knit.config.json"),
     JSON.stringify({ name: "checkout", shared: ["react"], exposes: ["./CartWidget.js"] }),
   );
   writeFileSync(join(dir, "CartWidget.js"), "export const CartWidget = () => 1;\n");
@@ -26,7 +26,7 @@ function makeProject(): string {
   return dir;
 }
 
-describe("fedkit build", () => {
+describe("knitkit build", () => {
   let project: string;
   beforeEach(() => {
     project = makeProject();
@@ -75,9 +75,9 @@ describe("fedkit build", () => {
   });
 });
 
-describe("fedkit validate", () => {
+describe("knitkit validate", () => {
   it("rejects a malformed manifest with a message", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "fedkit-val-"));
+    const dir = mkdtempSync(join(tmpdir(), "knitkit-val-"));
     const path = join(dir, "bad.manifest.json");
     writeFileSync(path, JSON.stringify({ spec: "0.2", name: "x" }));
     const r = await validateCommand(path);

@@ -1,5 +1,5 @@
 {
-  "name": "@fedkit/runtime",
+  "name": "@knitkit/runtime",
   "version": "0.0.0",
   "description": "Runtime-first, bundler-agnostic module federation on native ESM + import maps.",
   "type": "module",

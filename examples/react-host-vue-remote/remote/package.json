@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node serve.mjs",
     "serve": "node serve.mjs",
-    "fedkit:build": "fedkit build ."
+    "knitkit:build": "knitkit build ."
   },
   "dependencies": {
     "vue": "^3.4.0"

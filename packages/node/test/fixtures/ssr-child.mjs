@@ -1,4 +1,4 @@
-// Child process for the SSR integration test. Registers the fedkit loader hooks with a
+// Child process for the SSR integration test. Registers the knitkit loader hooks with a
 // negotiated import map, then imports a bare specifier that resolves to a remote HTTP
 // module. Prints "OK:<value>" on success or "ERR:<code>" on failure, and sets exit code.
 import { pathToFileURL } from "node:url";

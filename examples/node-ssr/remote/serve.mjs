@@ -41,13 +41,13 @@ async function buildOnce() {
     },
     meta: { buildTime: new Date().toISOString(), framework: "react@18" },
   };
-  await writeFile(join(distDir, "fed.manifest.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
+  await writeFile(join(distDir, "knit.manifest.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
 }
 await buildOnce();
 
 const server = createServer(async (req, res) => {
   let urlPath = decodeURIComponent((req.url ?? "/").split("?")[0]);
-  if (urlPath === "/") urlPath = "/fed.manifest.json";
+  if (urlPath === "/") urlPath = "/knit.manifest.json";
   const filePath = join(distDir, urlPath);
   if (!filePath.startsWith(distDir)) {
     res.writeHead(403);

@@ -159,7 +159,7 @@ describe("negotiateShared", () => {
   });
 
   describe("singleton conflict -> coded error", () => {
-    it("throws FED_ERR_SINGLETON_CONFLICT naming participants and their ranges", () => {
+    it("throws KNIT_ERR_SINGLETON_CONFLICT naming participants and their ranges", () => {
       const m1 = manifest({
         name: "checkout",
         shared: {
@@ -198,7 +198,7 @@ describe("negotiateShared", () => {
       } catch (e) {
         expect(isFedkitError(e)).toBe(true);
         if (isFedkitError(e)) {
-          expect(e.code).toBe("FED_ERR_SINGLETON_CONFLICT");
+          expect(e.code).toBe("KNIT_ERR_SINGLETON_CONFLICT");
           expect(e.suggestion).toBeTruthy();
         }
       }
@@ -314,7 +314,7 @@ describe("negotiateShared", () => {
   });
 
   describe("host shared validation", () => {
-    it("throws FED_ERR_MANIFEST_INVALID when a host shared decl has no url", () => {
+    it("throws KNIT_ERR_MANIFEST_INVALID when a host shared decl has no url", () => {
       try {
         negotiateShared(
           [],
@@ -323,7 +323,7 @@ describe("negotiateShared", () => {
         );
         expect.fail("expected throw");
       } catch (e) {
-        expect(isFedkitError(e) && e.code).toBe("FED_ERR_MANIFEST_INVALID");
+        expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
       }
     });
 

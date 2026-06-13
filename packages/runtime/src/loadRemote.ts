@@ -20,10 +20,10 @@ export function getRegistrations(): RemoteRegistration[] {
 /**
  * Augmentable registry mapping a remote specifier to its exposed module's type.
  *
- * `fedkit types sync` generates declarations of the form:
+ * `knitkit types sync` generates declarations of the form:
  *
  * ```ts
- * declare module "@fedkit/runtime" {
+ * declare module "@knitkit/runtime" {
  *   interface RemoteModules { "checkout/CartWidget": typeof import("./checkout/CartWidget").default }
  * }
  * ```
@@ -46,7 +46,7 @@ export async function loadRemote(specifier: string): Promise<unknown> {
   const slash = specifier.indexOf("/");
   if (slash <= 0 || slash === specifier.length - 1) {
     throw new FedkitError(
-      "FED_ERR_LOAD_FAILED",
+      "KNIT_ERR_LOAD_FAILED",
       `Invalid specifier "${specifier}". Expected "<remoteName>/<exposeKey>".`,
       `Example: loadRemote("checkout/CartWidget")`,
     );
@@ -57,7 +57,7 @@ export async function loadRemote(specifier: string): Promise<unknown> {
   const remote = registered.find((r) => r.name === remoteName);
   if (!remote) {
     throw new FedkitError(
-      "FED_ERR_NOT_REGISTERED",
+      "KNIT_ERR_NOT_REGISTERED",
       `Remote "${remoteName}" is not registered.`,
       `Call registerRemotes() with this remote's manifest first.`,
     );
@@ -65,7 +65,7 @@ export async function loadRemote(specifier: string): Promise<unknown> {
   const expose = remote.manifest.exposes[ensureKey];
   if (!expose) {
     throw new FedkitError(
-      "FED_ERR_LOAD_FAILED",
+      "KNIT_ERR_LOAD_FAILED",
       `Remote "${remoteName}" does not expose "${ensureKey}".`,
       `Available: ${Object.keys(remote.manifest.exposes).join(", ") || "(none)"}`,
     );
@@ -76,7 +76,7 @@ export async function loadRemote(specifier: string): Promise<unknown> {
     return mod.default ?? mod;
   } catch (e) {
     throw new FedkitError(
-      "FED_ERR_LOAD_FAILED",
+      "KNIT_ERR_LOAD_FAILED",
       `Failed to load module "${specifier}" from ${url}: ${(e as Error).message}`,
       `Check the remote's built artifact, network access, and CORS.`,
     );
@@ -88,7 +88,7 @@ export async function loadRemote(specifier: string): Promise<unknown> {
  * - relative URLs against an absolute manifest base,
  * - already-absolute URLs (http(s):, data:, etc.) when the base is empty (inline manifests).
  * Never throws; a value that can't be resolved is returned as-is so the import() call
- * surfaces a coded FED_ERR_LOAD_FAILED rather than an uncoded URL TypeError.
+ * surfaces a coded KNIT_ERR_LOAD_FAILED rather than an uncoded URL TypeError.
  */
 function resolveModuleUrl(base: string, ref: string): string {
   try {

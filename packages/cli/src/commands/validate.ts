@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { validateManifest, isFedkitError } from "@fedkit/runtime";
+import { validateManifest, isFedkitError } from "@knitkit/runtime";
 
 export async function validateCommand(manifestPath: string): Promise<{ ok: true } | { ok: false; message: string; suggestion?: string }> {
   let raw: unknown;

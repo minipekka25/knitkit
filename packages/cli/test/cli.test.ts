@@ -7,7 +7,7 @@ import { typesGenerateCommand } from "../src/commands/typesGenerate.js";
 import { typesSyncCommand } from "../src/commands/typesSync.js";
 import { validateCommand } from "../src/commands/validate.js";
 
-const argv = (...args: string[]) => ["node", "fedkit", ...args];
+const argv = (...args: string[]) => ["node", "knitkit", ...args];
 
 let outSpy: MockInstance;
 let errSpy: MockInstance;
@@ -40,7 +40,7 @@ describe("CLI dispatcher (main)", () => {
   });
 
   it("validates a good manifest (exit 0) and a bad one (exit 1)", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "fedkit-cli-"));
+    const dir = mkdtempSync(join(tmpdir(), "knitkit-cli-"));
     const good = join(dir, "good.json");
     const bad = join(dir, "bad.json");
     writeFileSync(good, JSON.stringify({ spec: "0.1", name: "checkout", exposes: {}, shared: {} }));
@@ -59,14 +59,14 @@ describe("command error paths", () => {
   });
 
   it("typesGenerate fails clearly without a prior build", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "fedkit-tg-err-"));
-    writeFileSync(join(dir, "fed.config.json"), JSON.stringify({ name: "x", shared: [], exposes: [] }));
-    await expect(typesGenerateCommand({ cwd: dir })).rejects.toThrow(/fedkit build/);
+    const dir = mkdtempSync(join(tmpdir(), "knitkit-tg-err-"));
+    writeFileSync(join(dir, "knit.config.json"), JSON.stringify({ name: "x", shared: [], exposes: [] }));
+    await expect(typesGenerateCommand({ cwd: dir })).rejects.toThrow(/knitkit build/);
     rmSync(dir, { recursive: true, force: true });
   });
 
-  it("typesSync fails clearly without fed.host.json", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "fedkit-ts-err-"));
+  it("typesSync fails clearly without knit.host.json", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "knitkit-ts-err-"));
     await expect(typesSyncCommand({ cwd: dir })).rejects.toThrow(/host config/);
     rmSync(dir, { recursive: true, force: true });
   });

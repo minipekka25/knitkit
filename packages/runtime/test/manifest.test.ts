@@ -21,7 +21,7 @@ describe("validateManifest", () => {
       validateManifest("not an object", "inline");
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("FED_ERR_MANIFEST_INVALID");
+      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
     }
   });
 
@@ -138,7 +138,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("FED_ERR_MANIFEST_INVALID");
+      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
       expect(isFedkitError(e) && e.message).toMatch(/version/);
     }
   });
@@ -151,7 +151,7 @@ describe("validateManifest", () => {
       );
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("FED_ERR_MANIFEST_INVALID");
+      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_MANIFEST_INVALID");
       expect(isFedkitError(e) && e.message).toMatch(/requiredVersion/);
     }
   });

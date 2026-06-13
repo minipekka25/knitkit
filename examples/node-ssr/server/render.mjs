@@ -8,13 +8,13 @@ import { createRequire } from "node:module";
 import { pathToFileURL } from "node:url";
 import { createElement } from "react";
 import { renderToString } from "react-dom/server";
-import { registerFederation, serializeImportMap } from "@fedkit/node";
+import { registerFederation, serializeImportMap } from "@knitkit/node";
 
 const require = createRequire(import.meta.url);
 const reactFile = pathToFileURL(require.resolve("react")).href;
 
 export async function setupRenderer(remoteBase) {
-  const manifestUrl = `${remoteBase}/fed.manifest.json`;
+  const manifestUrl = `${remoteBase}/knit.manifest.json`;
   const res = await fetch(manifestUrl);
   if (!res.ok) throw new Error(`Failed to fetch manifest ${manifestUrl}: HTTP ${res.status}`);
   const manifest = await res.json();
@@ -47,11 +47,11 @@ export async function setupRenderer(remoteBase) {
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>fedkit — SSR of a federated React component</title>
+<title>knitkit — SSR of a federated React component</title>
 ${head}
 </head>
 <body>
-<h1>fedkit — SSR of a federated React component</h1>
+<h1>knitkit — SSR of a federated React component</h1>
 <div id="root">${appHtml}</div>
 <script type="module">
   import { hydrateRoot } from "react-dom/client";

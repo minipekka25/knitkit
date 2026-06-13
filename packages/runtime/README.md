@@ -1,6 +1,6 @@
-# `@fedkit/runtime`
+# `@knitkit/runtime`
 
-Browser core for **fedkit** — runtime-first, bundler-agnostic module federation on native ESM + import maps.
+Browser core for **knitkit** — runtime-first, bundler-agnostic module federation on native ESM + import maps.
 
 **Zero dependencies. ESM-only. < 5 KB min+gzip.**
 
@@ -15,12 +15,12 @@ import {
   getShareInfo,
   validateManifest,
   FedkitError,
-} from "@fedkit/runtime";
+} from "@knitkit/runtime";
 
 await registerRemotes(
   [
-    { name: "checkout", manifest: "/static/federation/checkout/fed.manifest.json" },
-    { name: "marketing", manifest: "https://cdn.example.com/marketing/fed.manifest.json" },
+    { name: "checkout", manifest: "/static/federation/checkout/knit.manifest.json" },
+    { name: "marketing", manifest: "https://cdn.example.com/marketing/knit.manifest.json" },
   ],
   {
     hostShared: {
@@ -48,7 +48,7 @@ Native import maps must be injected **before the first module import** that reso
     <script type="module">
       import { registerRemotes } from "/static/runtime/index.mjs";
       await registerRemotes([
-        { name: "checkout", manifest: "/static/federation/checkout/fed.manifest.json" },
+        { name: "checkout", manifest: "/static/federation/checkout/knit.manifest.json" },
       ]);
       // Optional: dynamic-import the rest of your app so the import map is in place.
       await import("/src/main.mjs");
@@ -80,9 +80,9 @@ All errors are coded. Catch `FedkitError` and inspect `.code` and `.suggestion`:
 
 | Code | Meaning |
 | --- | --- |
-| `FED_ERR_NEGOTIATION_CONFLICT` | No single version satisfies every participant's range and the package is not singleton. |
-| `FED_ERR_SINGLETON_CONFLICT` | A singleton package has incompatible versions. |
-| `FED_ERR_MANIFEST_INVALID` | A manifest failed validation. |
-| `FED_ERR_LOAD_FAILED` | A network or import() error. |
-| `FED_ERR_NOT_REGISTERED` | `loadRemote` called for a remote that wasn't registered. |
-| `FED_ERR_IMPORT_MAP_INJECTION_FAILED` | `injectImportMap` called outside the browser. |
+| `KNIT_ERR_NEGOTIATION_CONFLICT` | No single version satisfies every participant's range and the package is not singleton. |
+| `KNIT_ERR_SINGLETON_CONFLICT` | A singleton package has incompatible versions. |
+| `KNIT_ERR_MANIFEST_INVALID` | A manifest failed validation. |
+| `KNIT_ERR_LOAD_FAILED` | A network or import() error. |
+| `KNIT_ERR_NOT_REGISTERED` | `loadRemote` called for a remote that wasn't registered. |
+| `KNIT_ERR_IMPORT_MAP_INJECTION_FAILED` | `injectImportMap` called outside the browser. |

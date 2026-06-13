@@ -57,7 +57,7 @@ export function negotiateShared(
     const importAs = decl.importAs ?? pkg;
     if (!decl.url) {
       throw new FedkitError(
-        "FED_ERR_MANIFEST_INVALID",
+        "KNIT_ERR_MANIFEST_INVALID",
         `Host shared "${pkg}" is missing a "url".`,
         `The host must provide a url for every shared dep, or omit it.`,
       );
@@ -78,7 +78,7 @@ export function negotiateShared(
       const importAs = pkg;
       if (!decl.url) {
         throw new FedkitError(
-          "FED_ERR_MANIFEST_INVALID",
+          "KNIT_ERR_MANIFEST_INVALID",
           `Remote "${name}" shared "${pkg}" is missing a "url".`,
           `Every shared entry must declare a url pointing to the emitted ESM asset.`,
         );
@@ -141,7 +141,7 @@ export function negotiateShared(
     const singletons = entries.filter((e) => e.singleton);
     if (singletons.length > 0) {
       throw new FedkitError(
-        "FED_ERR_SINGLETON_CONFLICT",
+        "KNIT_ERR_SINGLETON_CONFLICT",
         buildSingletonConflictMessage(pkg, entries),
         buildSingletonConflictSuggestion(pkg, entries),
       );

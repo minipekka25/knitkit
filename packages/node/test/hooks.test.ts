@@ -68,10 +68,10 @@ describe("hooks.load", () => {
     expect(r.source).toContain("ok");
   });
 
-  it("refuses tampered content with FED_ERR_SRI_MISMATCH", async () => {
+  it("refuses tampered content with KNIT_ERR_SRI_MISMATCH", async () => {
     initialize({ importMap: { imports: { "w/x": "https://cdn/sri.js" }, integrity: { "w/x": computeIntegrity("DIFFERENT CONTENT") } } });
     setFetch(async () => new Response("export const x = 1;\n", { status: 200 }));
-    await expect(load("https://cdn/sri.js", {}, nextLoad(null))).rejects.toMatchObject({ code: "FED_ERR_SRI_MISMATCH" });
+    await expect(load("https://cdn/sri.js", {}, nextLoad(null))).rejects.toMatchObject({ code: "KNIT_ERR_SRI_MISMATCH" });
   });
 
   it("caches a fetched module so a second load does not refetch", async () => {
@@ -83,17 +83,17 @@ describe("hooks.load", () => {
     expect(f).toHaveBeenCalledOnce();
   });
 
-  it("wraps a network failure in FED_ERR_LOAD_FAILED", async () => {
+  it("wraps a network failure in KNIT_ERR_LOAD_FAILED", async () => {
     initialize({ importMap: { imports: {} } });
     setFetch(async () => {
       throw new Error("connection refused");
     });
-    await expect(load("https://cdn/down1.js", {}, nextLoad(null))).rejects.toMatchObject({ code: "FED_ERR_LOAD_FAILED" });
+    await expect(load("https://cdn/down1.js", {}, nextLoad(null))).rejects.toMatchObject({ code: "KNIT_ERR_LOAD_FAILED" });
   });
 
-  it("wraps a non-OK response in FED_ERR_LOAD_FAILED", async () => {
+  it("wraps a non-OK response in KNIT_ERR_LOAD_FAILED", async () => {
     initialize({ importMap: { imports: {} } });
     setFetch(async () => new Response("nope", { status: 404 }));
-    await expect(load("https://cdn/down2.js", {}, nextLoad(null))).rejects.toMatchObject({ code: "FED_ERR_LOAD_FAILED" });
+    await expect(load("https://cdn/down2.js", {}, nextLoad(null))).rejects.toMatchObject({ code: "KNIT_ERR_LOAD_FAILED" });
   });
 });

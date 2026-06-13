@@ -1,7 +1,7 @@
 # Changesets
 
 This folder is managed by [changesets](https://github.com/changesets/changesets). It drives
-versioning and changelogs for the published `@fedkit/*` packages.
+versioning and changelogs for the published `@knitkit/*` packages.
 
 ## Workflow
 
@@ -32,8 +32,8 @@ While we are pre-1.0:
 - The **manifest spec** (`/spec`) is versioned independently of the packages; a breaking
   spec change is always a minor bump here and a spec major bump there.
 
-## Publishing is gated
+## Publishing
 
-`npm run release` will not work until the real package name / npm scope is chosen (the
-`@fedkit/*` scope is a placeholder — see `project_brief.md` §10). The private example app
-(`@fedkit/example-react-host-vue-remote`) is never published.
+`npm run release` publishes the `@knitkit/*` packages. It needs the `@knitkit` npm scope to be
+registered/owned and `NPM_TOKEN` available (CI or local `npm login`). The private example apps
+(`@knitkit/example-*`) are never published.

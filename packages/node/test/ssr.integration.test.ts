@@ -78,7 +78,7 @@ describe("SSR loader hooks (integration)", () => {
       REMOTE_INTEGRITY: wrongIntegrity,
     });
     expect(code).toBe(3);
-    expect(out).toBe("ERR:FED_ERR_SRI_MISMATCH");
+    expect(out).toBe("ERR:KNIT_ERR_SRI_MISMATCH");
   });
 
   it("surfaces a coded load error for an unreachable remote", async () => {
@@ -88,6 +88,6 @@ describe("SSR loader hooks (integration)", () => {
       REMOTE_INTEGRITY: "",
     });
     expect(code).toBe(3);
-    expect(out).toBe("ERR:FED_ERR_LOAD_FAILED");
+    expect(out).toBe("ERR:KNIT_ERR_LOAD_FAILED");
   });
 });

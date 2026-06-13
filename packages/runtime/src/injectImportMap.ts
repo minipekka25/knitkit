@@ -11,9 +11,9 @@ import type { ImportMap } from "./manifest.js";
 export function injectImportMap(map: ImportMap): void {
   if (typeof document === "undefined") {
     throw new FedkitError(
-      "FED_ERR_IMPORT_MAP_INJECTION_FAILED",
+      "KNIT_ERR_IMPORT_MAP_INJECTION_FAILED",
       "injectImportMap requires a DOM (document is undefined).",
-      "Use this function only in the browser. For Node, use @fedkit/node.",
+      "Use this function only in the browser. For Node, use @knitkit/node.",
     );
   }
   const existing = document.querySelector('script[type="importmap"]');

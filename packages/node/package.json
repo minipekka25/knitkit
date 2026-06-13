@@ -1,7 +1,7 @@
 {
-  "name": "@fedkit/node",
+  "name": "@knitkit/node",
   "version": "0.0.0",
-  "description": "Node SSR for fedkit: module.register loader hooks, module cache, SRI, import-map serialization for hydration parity.",
+  "description": "Node SSR for knitkit: module.register loader hooks, module cache, SRI, import-map serialization for hydration parity.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -29,7 +29,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@fedkit/runtime": "*"
+    "@knitkit/runtime": "*"
   },
   "devDependencies": {
     "@types/node": "^20.12.0",

@@ -1,4 +1,4 @@
-import type { ImportMap } from "@fedkit/runtime";
+import type { ImportMap } from "@knitkit/runtime";
 
 /**
  * Serialize a negotiated import map to a `<script type="importmap">` tag for SSR.

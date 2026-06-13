@@ -1,4 +1,4 @@
-import type { ImportMap } from "@fedkit/runtime";
+import type { ImportMap } from "@knitkit/runtime";
 
 // U+2028 / U+2029, built from code points so no raw separator characters live in this file.
 const LINE_SEP = String.fromCharCode(0x2028);

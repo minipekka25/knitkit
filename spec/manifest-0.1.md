@@ -1,7 +1,7 @@
 # Manifest Spec `0.1`
 
 > **Status:** v0.1, locked for Phase 1.
-> **Source of truth:** this document. The implementation in `@fedkit/runtime`'s `validateManifest` is the reference validator; any divergence is a bug.
+> **Source of truth:** this document. The implementation in `@knitkit/runtime`'s `validateManifest` is the reference validator; any divergence is a bug.
 
 A **manifest** is a JSON document that describes a federated application's exposed modules and shared dependencies. Host applications fetch manifests from remote URLs at boot, run version negotiation, and emit a single import map.
 
@@ -37,7 +37,7 @@ A **manifest** is a JSON document that describes a federated application's expos
 | Field | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `url` | string (URL or path) | yes | Resolved relative to the manifest's own URL. May be absolute. |
-| `types` | string (URL or path) | no | Path to a `.d.ts` file, used by `fedkit types sync`. |
+| `types` | string (URL or path) | no | Path to a `.d.ts` file, used by `knitkit types sync`. |
 
 Expose keys are written with a leading `./` (e.g. `"./CartWidget"`). When calling `loadRemote`, the consumer may omit the `./` (e.g. `loadRemote("checkout/CartWidget")`).
 
@@ -57,9 +57,9 @@ Expose keys are written with a leading `./` (e.g. `"./CartWidget"`). When callin
 | --- | --- | --- | --- |
 | `version` | semver string | yes | The exact version this participant contributes. |
 | `requiredVersion` | semver range | yes | The range of versions this participant can accept. Supports `^`, `~`, `>=`, `>`, `<=`, `<`, `=`, x-ranges (`1.x`, `1.2.x`, `*`), and exact. |
-| `singleton` | bool | no, default `true` | If `true`, a conflict throws `FED_ERR_SINGLETON_CONFLICT`. If `false`, an outlier is loaded via a `scopes` entry. |
+| `singleton` | bool | no, default `true` | If `true`, a conflict throws `KNIT_ERR_SINGLETON_CONFLICT`. If `false`, an outlier is loaded via a `scopes` entry. |
 | `url` | string (URL or path) | yes | URL to the prebundled ESM asset for this package. |
-| `integrity` | string | no | SRI hash (`sha384-...`). Computed by `@fedkit/cli` at build time. Enforced in Phase 2. |
+| `integrity` | string | no | SRI hash (`sha384-...`). Computed by `@knitkit/cli` at build time. Enforced in Phase 2. |
 
 ## URL resolution
 
@@ -111,4 +111,4 @@ All relative URLs (`url`, `types`) resolve against the manifest's own URL. The r
 
 ## Validation
 
-`@fedkit/runtime` exports `validateManifest(input, sourceLabel)`. The function throws `FedkitError` with code `FED_ERR_MANIFEST_INVALID` and a precise `.message` + `.suggestion`. The CLI uses the same function (re-exported, not duplicated) to validate manifests on disk.
+`@knitkit/runtime` exports `validateManifest(input, sourceLabel)`. The function throws `FedkitError` with code `KNIT_ERR_MANIFEST_INVALID` and a precise `.message` + `.suggestion`. The CLI uses the same function (re-exported, not duplicated) to validate manifests on disk.

@@ -1,4 +1,4 @@
-# fedkit documentation
+# knitkit documentation
 
 > Published with **[Mintlify](https://mintlify.com)** (`docs.json` + MDX/Markdown pages with
 > frontmatter). Preview locally:
@@ -26,9 +26,9 @@
 
 ## Reference
 
-- Package READMEs: [`@fedkit/runtime`](../packages/runtime/README.md) ·
-  [`@fedkit/cli`](../packages/cli/README.md) · [`@fedkit/node`](../packages/node/README.md) ·
-  [`@fedkit/react`](../packages/react/README.md) · [`@fedkit/overrides`](../packages/overrides/README.md)
+- Package READMEs: [`@knitkit/runtime`](../packages/runtime/README.md) ·
+  [`@knitkit/cli`](../packages/cli/README.md) · [`@knitkit/node`](../packages/node/README.md) ·
+  [`@knitkit/react`](../packages/react/README.md) · [`@knitkit/overrides`](../packages/overrides/README.md)
 - [Manifest spec v0.1](../spec/manifest-0.1.md)
 - [Roadmap](./roadmap.md)
 

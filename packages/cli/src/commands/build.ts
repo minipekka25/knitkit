@@ -3,7 +3,7 @@ import { resolve, dirname, join, basename } from "node:path";
 import { loadConfig, resolvePackageDir } from "../config.js";
 import { bundlePackage } from "../bundler/cjsToEsm.js";
 import { sha384Integrity } from "../hash.js";
-import type { Manifest, SharedDecl, ExposeDecl } from "@fedkit/runtime";
+import type { Manifest, SharedDecl, ExposeDecl } from "@knitkit/runtime";
 
 export interface BuildOptions {
   cwd?: string;
@@ -58,7 +58,7 @@ export async function buildCommand(opts: BuildOptions = {}): Promise<{ manifestP
     },
   };
 
-  const manifestPath = join(outDir, "fed.manifest.json");
+  const manifestPath = join(outDir, "knit.manifest.json");
   await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n", "utf8");
 
   return { manifestPath };

@@ -1,6 +1,6 @@
-# `@fedkit/node`
+# `@knitkit/node`
 
-Node SSR for **fedkit** — the same module federation that runs in the browser, on the server, driven by the same manifest and the same negotiation.
+Node SSR for **knitkit** — the same module federation that runs in the browser, on the server, driven by the same manifest and the same negotiation.
 
 It installs Node `module.register` loader hooks that:
 
@@ -13,7 +13,7 @@ It installs Node `module.register` loader hooks that:
 
 ```ts
 // server entry — run negotiation once, register hooks, render.
-import { negotiateShared, registerFederation, serializeImportMap } from "@fedkit/node";
+import { negotiateShared, registerFederation, serializeImportMap } from "@knitkit/node";
 
 const result = negotiateShared(
   [{ name: "checkout", manifest, baseUrl: "https://cdn.example.com/checkout/" }],
@@ -34,8 +34,8 @@ For frameworks that own the entry, register via a flag and pass the map through 
 
 ```bash
 FEDKIT_IMPORT_MAP_JSON='{"imports":{"react":"https://cdn/react-18.3.1.js"}}' \
-  node --import @fedkit/node/register server.js
-# or: FEDKIT_IMPORT_MAP=/path/to/importmap.json node --import @fedkit/node/register server.js
+  node --import @knitkit/node/register server.js
+# or: FEDKIT_IMPORT_MAP=/path/to/importmap.json node --import @knitkit/node/register server.js
 ```
 
 ## API
@@ -44,7 +44,7 @@ FEDKIT_IMPORT_MAP_JSON='{"imports":{"react":"https://cdn/react-18.3.1.js"}}' \
 | --- | --- |
 | `registerFederation(importMap, opts?)` | Install the loader hooks for this process. Call before importing anything that uses the map. |
 | `serializeImportMap(map)` / `serializeImportMapJson(map)` | Emit a `<script type="importmap">` (script-injection-safe) for hydration parity. |
-| `negotiateShared(...)` | Re-exported from `@fedkit/runtime` — negotiate with the same function the browser uses. |
+| `negotiateShared(...)` | Re-exported from `@knitkit/runtime` — negotiate with the same function the browser uses. |
 | `computeIntegrity(content, alg?)` / `verifyIntegrity(content, integrity)` | SRI helpers (sha256/384/512). |
 | `ModuleCache` | The in-memory module cache (exposed for advanced control). |
 
@@ -52,4 +52,4 @@ FEDKIT_IMPORT_MAP_JSON='{"imports":{"react":"https://cdn/react-18.3.1.js"}}' \
 
 - Loader hooks run in a worker thread with documented ~4×/~400ms overhead for a no-op — that's why fetched modules are cached. Disk caching is a future option.
 - SRI is enforced when a shared/remote entry carries an `integrity` value; entries without one load unverified (pin your remotes — see the security guide).
-- This is the Weeks 2–4 SSR foundation. A streaming-SSR example and `@fedkit/react` `<RemoteComponent>` build on it.
+- This is the Weeks 2–4 SSR foundation. A streaming-SSR example and `@knitkit/react` `<RemoteComponent>` build on it.

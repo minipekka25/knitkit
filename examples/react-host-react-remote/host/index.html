@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>fedkit demo — React host + React remote via &lt;RemoteComponent&gt;</title>
+    <title>knitkit demo — React host + React remote via &lt;RemoteComponent&gt;</title>
   </head>
   <body>
     <div id="root">loading…</div>
     <!--
-      One import map for the whole page: react, react-dom, @fedkit/runtime AND @fedkit/react
-      all resolve here. Because react is a single import-map entry, the host, @fedkit/react,
+      One import map for the whole page: react, react-dom, @knitkit/runtime AND @knitkit/react
+      all resolve here. Because react is a single import-map entry, the host, @knitkit/react,
       and the remote component all share ONE React instance — so the remote's hooks work.
       ZERO bundler plugins.
     -->
@@ -20,15 +20,15 @@
           "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
           "react-dom": "https://esm.sh/react-dom@18.3.1",
           "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-          "@fedkit/runtime": "/runtime/index.js",
-          "@fedkit/react": "/react-pkg/index.js"
+          "@knitkit/runtime": "/runtime/index.js",
+          "@knitkit/react": "/react-pkg/index.js"
         }
       }
     </script>
     <script type="module">
-      import { registerRemotes } from "@fedkit/runtime";
+      import { registerRemotes } from "@knitkit/runtime";
       await registerRemotes(
-        [{ name: "widgets", manifest: "/federation/fed.manifest.json" }],
+        [{ name: "widgets", manifest: "/federation/knit.manifest.json" }],
         {
           hostShared: {
             react: { version: "18.3.1", requiredVersion: "^18.0.0", singleton: true, url: "https://esm.sh/react@18.3.1" },

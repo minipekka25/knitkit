@@ -1,7 +1,7 @@
 {
-  "name": "@fedkit/react",
+  "name": "@knitkit/react",
   "version": "0.0.0",
-  "description": "Thin React client wrapper for fedkit: <RemoteComponent> (lazy + Suspense + error boundary) over loadRemote.",
+  "description": "Thin React client wrapper for knitkit: <RemoteComponent> (lazy + Suspense + error boundary) over loadRemote.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -24,7 +24,7 @@
     "react": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@fedkit/runtime": "*"
+    "@knitkit/runtime": "*"
   },
   "devDependencies": {
     "@testing-library/react": "^14.3.1",

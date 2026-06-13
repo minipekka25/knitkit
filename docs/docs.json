@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "fedkit",
+  "name": "knitkit",
   "description": "Runtime-first, bundler-agnostic module federation on native ESM + import maps.",
   "colors": {
     "primary": "#4f46e5",
@@ -32,12 +32,12 @@
   "navbar": {
     "primary": {
       "type": "github",
-      "href": "https://github.com/your-org/fedkit"
+      "href": "https://github.com/your-org/knitkit"
     }
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/your-org/fedkit"
+      "github": "https://github.com/your-org/knitkit"
     }
   }
 }

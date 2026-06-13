@@ -1,7 +1,7 @@
 // localStorage-backed store for remote overrides. Maps a remote NAME to a manifest URL
 // (typically a localhost URL) that should be used instead of the deployed manifest.
 
-const KEY = "fedkit:overrides";
+const KEY = "knitkit:overrides";
 
 function store(): Storage | null {
   try {

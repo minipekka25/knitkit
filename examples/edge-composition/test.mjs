@@ -38,7 +38,7 @@ try {
 
   assert.match(html, /Product \(React fragment\)/, "React fragment composed");
   assert.match(html, /Reviews \(vanilla fragment\)/, "vanilla fragment composed");
-  assert.doesNotMatch(html, /<fedkit-fragment/, "placeholders replaced");
+  assert.doesNotMatch(html, /<knitkit-fragment/, "placeholders replaced");
   assert.match(html, /<script type="importmap">/, "import map injected");
   assert.ok(html.indexOf("Product") < html.indexOf("Reviews"), "fragments composed in document order");
 

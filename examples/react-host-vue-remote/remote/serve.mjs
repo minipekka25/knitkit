@@ -1,5 +1,5 @@
-// Static file server for the remote. Runs `fedkit build` on boot to produce
-// `dist/exposes/CartWidget.js` and `dist/fed.manifest.json`, then serves them.
+// Static file server for the remote. Runs `knitkit build` on boot to produce
+// `dist/exposes/CartWidget.js` and `dist/knit.manifest.json`, then serves them.
 // The remote's exposed module imports `vue` (resolved at build time) and
 // `shared-state` (a bare specifier mapped by the host's import map to a URL
 // the host also serves — guaranteeing one instance).
@@ -16,7 +16,7 @@ const distDir = join(root, "dist");
 
 // On boot: bundle the exposed component (resolving `vue` from node_modules)
 // and copy a shared-state.js alongside. The manifest is hand-written here
-// (a future fedkit build command will do this; for the demo we keep it inline).
+// (a future knitkit build command will do this; for the demo we keep it inline).
 async function buildOnce() {
   await mkdir(join(distDir, "exposes"), { recursive: true });
   await mkdir(join(distDir, "shared"), { recursive: true });
@@ -47,7 +47,7 @@ async function buildOnce() {
   const code = result.outputFiles[0].text;
   await writeFile(join(distDir, "exposes", "CartWidget.js"), code, "utf8");
 
-  // Hand-rolled manifest (real fedkit build will replace this in a follow-up).
+  // Hand-rolled manifest (real knitkit build will replace this in a follow-up).
   const manifest = {
     spec: "0.1",
     name: "checkout",
@@ -75,7 +75,7 @@ async function buildOnce() {
       framework: "vue@3",
     },
   };
-  await writeFile(join(distDir, "fed.manifest.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
+  await writeFile(join(distDir, "knit.manifest.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
 }
 
 await buildOnce();
@@ -92,7 +92,7 @@ const mime = {
 const server = createServer(async (req, res) => {
   try {
     let urlPath = decodeURIComponent((req.url ?? "/").split("?")[0]);
-    if (urlPath === "/") urlPath = "/fed.manifest.json";
+    if (urlPath === "/") urlPath = "/knit.manifest.json";
     const filePath = join(distDir, urlPath);
     if (!filePath.startsWith(distDir)) {
       res.writeHead(403);

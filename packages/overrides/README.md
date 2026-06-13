@@ -1,10 +1,10 @@
-# `@fedkit/overrides`
+# `@knitkit/overrides`
 
-The local-override dev tool for **fedkit** — point any remote at `localhost` while every
+The local-override dev tool for **knitkit** — point any remote at `localhost` while every
 other remote stays on its deployed manifest. The single-spa
-[`import-map-overrides`](https://github.com/single-spa/import-map-overrides) DX, for fedkit.
+[`import-map-overrides`](https://github.com/single-spa/import-map-overrides) DX, for knitkit.
 
-There is no cross-remote HMR (that needs bundler coupling — which fedkit refuses). Instead,
+There is no cross-remote HMR (that needs bundler coupling — which knitkit refuses). Instead,
 each remote runs its own dev server, and this widget repoints the host at it.
 
 ## Usage
@@ -12,13 +12,13 @@ each remote runs its own dev server, and this widget repoints the host at it.
 Wrap your remotes with `applyOverrides` and mount the widget in development:
 
 ```ts
-import { registerRemotes } from "@fedkit/runtime";
-import { applyOverrides, mountOverridesWidget } from "@fedkit/overrides";
+import { registerRemotes } from "@knitkit/runtime";
+import { applyOverrides, mountOverridesWidget } from "@knitkit/overrides";
 
 await registerRemotes(
   applyOverrides([
-    { name: "checkout", manifest: "https://cdn.example.com/checkout/fed.manifest.json" },
-    { name: "profile", manifest: "https://cdn.example.com/profile/fed.manifest.json" },
+    { name: "checkout", manifest: "https://cdn.example.com/checkout/knit.manifest.json" },
+    { name: "profile", manifest: "https://cdn.example.com/profile/knit.manifest.json" },
   ]),
 );
 
@@ -27,7 +27,7 @@ if (import.meta.env?.DEV) {
 }
 ```
 
-Open the floating **⚙ fedkit overrides** panel, paste a localhost manifest URL for `checkout`,
+Open the floating **⚙ knitkit overrides** panel, paste a localhost manifest URL for `checkout`,
 click **Use local**, and the page reloads loading `checkout` from your dev server — everything
 else stays deployed.
 
@@ -39,5 +39,5 @@ else stays deployed.
 | `mountOverridesWidget({ remotes?, placeholder? })` | Mount the floating override panel. Returns an unmount function. |
 | `getOverrides()` / `setOverride(name, url)` / `removeOverride(name)` / `clearOverrides()` | Programmatic access to the localStorage-backed override store. |
 
-Overrides live in `localStorage` under `fedkit:overrides`, so they persist per-browser and
+Overrides live in `localStorage` under `knitkit:overrides`, so they persist per-browser and
 never affect other developers or production.

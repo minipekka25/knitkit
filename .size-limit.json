@@ -1,6 +1,6 @@
 [
   {
-    "name": "@fedkit/runtime",
+    "name": "@knitkit/runtime",
     "path": "packages/runtime/dist/index.js",
     "limit": "5 KB",
     "ignore": []

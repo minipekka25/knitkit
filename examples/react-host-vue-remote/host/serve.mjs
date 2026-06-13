@@ -36,7 +36,7 @@ async function proxyToRemote(req, res, urlPath) {
   req.pipe(proxyReq);
 }
 
-// Bundle the host's main.jsx on boot so the browser can import the @fedkit/runtime
+// Bundle the host's main.jsx on boot so the browser can import the @knitkit/runtime
 // from the local node_modules. In a real demo this would be a one-line dev pipeline
 // (esbuild --watch); for the demo we do a one-shot build.
 async function buildHostBundle() {
@@ -57,7 +57,7 @@ async function buildHostBundle() {
     loader: { ".js": "jsx", ".jsx": "jsx" },
     // Mark import-map-managed bare specifiers as external so esbuild doesn't try to
     // resolve them from node_modules. The browser will resolve them via the import map.
-    external: ["react", "react-dom", "react-dom/client", "@fedkit/runtime", "shared-state"],
+    external: ["react", "react-dom", "react-dom/client", "@knitkit/runtime", "shared-state"],
     define: { "process.env.NODE_ENV": '"production"' },
   });
 }

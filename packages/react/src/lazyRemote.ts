@@ -1,5 +1,5 @@
 import { lazy, type ComponentType, type LazyExoticComponent } from "react";
-import { loadRemote } from "@fedkit/runtime";
+import { loadRemote } from "@knitkit/runtime";
 
 // Cache the lazy wrapper per specifier so React doesn't re-create it (and re-suspend)
 // on every render. React.lazy itself memoizes the import promise.

@@ -3,33 +3,31 @@ title: "Roadmap"
 description: "Honest status — what's shipped, what's next, and what we won't build."
 ---
 
-Honest status. fedkit is pre-1.0; the `@fedkit/*` scope is a placeholder until the project is
-named (`project_brief.md` §10).
+Honest status. knitkit is pre-1.0, published under the `@knitkit/*` npm scope.
 
 ## Shipped
 
-- **`@fedkit/runtime`** — `registerRemotes`, `loadRemote`, in-house semver negotiation
+- **`@knitkit/runtime`** — `registerRemotes`, `loadRemote`, in-house semver negotiation
   (caret/tilde/x-ranges/comparators), import-map injection, manifest validation, coded errors,
   augmentable typing for `loadRemote`. < 5 KB, zero deps.
 - **Manifest spec v0.1** — versioned in [`/spec`](../spec/manifest-0.1.md).
-- **`@fedkit/cli`** — shared-deps emitter (esbuild), manifest generation, `sha384` SRI,
-  `fedkit types generate` / `fedkit types sync`.
-- **`@fedkit/node`** — SSR via `module.register` loader hooks, SRI verification, module cache,
+- **`@knitkit/cli`** — shared-deps emitter (esbuild), manifest generation, `sha384` SRI,
+  `knitkit types generate` / `knitkit types sync`.
+- **`@knitkit/node`** — SSR via `module.register` loader hooks, SRI verification, module cache,
   hydration-parity import-map serialization.
-- **`@fedkit/react`** — `"use client"` `<RemoteComponent>` (lazy + Suspense + error boundary).
-- **`@fedkit/overrides`** — local-override dev tool.
-- **`@fedkit/edge`** — ESI-style HTML fragment stream-stitching + import-map injection for
+- **`@knitkit/react`** — `"use client"` `<RemoteComponent>` (lazy + Suspense + error boundary).
+- **`@knitkit/overrides`** — local-override dev tool.
+- **`@knitkit/edge`** — ESI-style HTML fragment stream-stitching + import-map injection for
   Cloudflare Workers / Deno Deploy / Vercel Edge (Web-standard `fetch` + Web Streams).
-- **Tier-2 fragment composition** — `@fedkit/react`'s `<RemoteFragment>` (client boundary) and
+- **Tier-2 fragment composition** — `@knitkit/react`'s `<RemoteFragment>` (client boundary) and
   the [edge-composition example](../examples/edge-composition) (independent apps stitched at the
   edge). Isolated fragments, each its own framework — no shared React.
 - **Examples** — React+Vue, React `<RemoteComponent>`, Node SSR, and edge composition, each with a smoke test.
-- **Release discipline** — changesets configured (publish gated on the name decision).
+- **Docs site** — published with Mintlify (`docs/docs.json`).
+- **Release discipline** — changesets configured; `0.1.0` pending the GitHub repo + npm scope publish.
 
 ## Next
 
-- **Docs site** — framework (Astro Starlight vs VitePress) is an open decision (§10.3). This
-  `/docs` content is framework-agnostic Markdown, ready to drop in.
 - **Next.js App Router story** — needs an honest resolution first. A true shared-React
   `<RemoteComponent>` inside Next is **not** zero-config: Next bundles its own React, so a
   federated remote's `import "react"` resolves to a CDN React via the import map → two React

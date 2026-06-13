@@ -2,7 +2,7 @@ node_modules/
 dist/
 dist-bundle/
 .turbo/
-.fedkit/
+.knitkit/
 coverage/
 .size-limit.json.tmp
 *.log

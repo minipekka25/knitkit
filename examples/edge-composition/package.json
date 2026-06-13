@@ -1,5 +1,5 @@
 {
-  "name": "@fedkit/example-edge-composition",
+  "name": "@knitkit/example-edge-composition",
   "version": "0.0.0",
   "private": true,
   "type": "module",

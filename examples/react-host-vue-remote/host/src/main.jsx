@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { loadRemote } from "@fedkit/runtime";
+import { loadRemote } from "@knitkit/runtime";
 // `shared-state` is a BARE specifier resolved via the import map — the same one
 // the Vue remote imports. One import-map entry → one module instance → one object
 // shared across the React host and the Vue remote. This is the singleton proof.
@@ -35,7 +35,7 @@ function App() {
   return React.createElement(
     "div",
     { style: { fontFamily: "system-ui", padding: 24, maxWidth: 720, margin: "0 auto" } },
-    React.createElement("h1", null, "fedkit demo"),
+    React.createElement("h1", null, "knitkit demo"),
     React.createElement(
       "p",
       { style: { color: "#555" } },

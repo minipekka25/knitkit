@@ -25,7 +25,7 @@ type State =
  *
  * This embeds static HTML, so `<script>` tags in the fragment do NOT execute. For an
  * interactive fragment, have it ship its own bootstrap or use an iframe. For edge-side
- * stream stitching, see `@fedkit/edge`.
+ * stream stitching, see `@knitkit/edge`.
  */
 export function RemoteFragment({ src, fallback = null, errorFallback = null, as = "div", init }: RemoteFragmentProps) {
   const [state, setState] = useState<State>({ status: "loading" });

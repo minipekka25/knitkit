@@ -1,6 +1,6 @@
 // Bytes-shipped benchmark: how much JavaScript does a host download just to DO federation?
 //
-// We measure each @fedkit package's published bundle, production-minified (esbuild) and then
+// We measure each @knitkit package's published bundle, production-minified (esbuild) and then
 // gzip + brotli compressed — the bytes that actually cross the wire. Shared deps (react, …)
 // are NOT counted: an app ships those whether or not it federates, so they aren't federation
 // overhead. The headline number is "federation overhead" = the runtime a host must load.
@@ -13,11 +13,11 @@ import { transform } from "esbuild";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 const TARGETS = [
-  ["@fedkit/runtime", "packages/runtime/dist/index.js"],
-  ["@fedkit/react", "packages/react/dist/index.js"],
-  ["@fedkit/overrides", "packages/overrides/dist/index.js"],
-  ["@fedkit/node", "packages/node/dist/index.js"],
-  ["@fedkit/edge", "packages/edge/dist/index.js"],
+  ["@knitkit/runtime", "packages/runtime/dist/index.js"],
+  ["@knitkit/react", "packages/react/dist/index.js"],
+  ["@knitkit/overrides", "packages/overrides/dist/index.js"],
+  ["@knitkit/node", "packages/node/dist/index.js"],
+  ["@knitkit/edge", "packages/edge/dist/index.js"],
 ];
 
 async function measure(file) {
@@ -42,12 +42,12 @@ for (const [name, rel] of TARGETS) {
 }
 
 // Federation overhead a browser host actually ships:
-//   - minimum: just @fedkit/runtime (registerRemotes + loadRemote)
-//   - with the React wrapper: + @fedkit/react
+//   - minimum: just @knitkit/runtime (registerRemotes + loadRemote)
+//   - with the React wrapper: + @knitkit/react
 const overhead = {
-  "runtime only": results["@fedkit/runtime"]?.brotli ?? null,
-  "runtime + react": results["@fedkit/runtime"] && results["@fedkit/react"]
-    ? results["@fedkit/runtime"].brotli + results["@fedkit/react"].brotli
+  "runtime only": results["@knitkit/runtime"]?.brotli ?? null,
+  "runtime + react": results["@knitkit/runtime"] && results["@knitkit/react"]
+    ? results["@knitkit/runtime"].brotli + results["@knitkit/react"].brotli
     : null,
 };
 
@@ -55,7 +55,7 @@ function fmt(n) {
   return n == null ? "—" : (n / 1024).toFixed(2) + " KB";
 }
 
-console.log("\nfedkit — bytes shipped (production minified)\n");
+console.log("\nknitkit — bytes shipped (production minified)\n");
 console.log("package".padEnd(20), "min".padStart(10), "gzip".padStart(10), "brotli".padStart(10));
 console.log("-".repeat(52));
 for (const [name, s] of Object.entries(results)) {

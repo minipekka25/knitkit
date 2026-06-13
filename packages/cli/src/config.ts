@@ -11,19 +11,19 @@ export interface FedConfig {
 }
 
 export function loadConfig(cwd: string = process.cwd()): FedConfig {
-  const path = resolve(cwd, "fed.config.json");
+  const path = resolve(cwd, "knit.config.json");
   if (!existsSync(path)) {
-    throw new Error(`fed.config.json not found at ${path}. Create one before running fedkit build.`);
+    throw new Error(`knit.config.json not found at ${path}. Create one before running knitkit build.`);
   }
   const raw = JSON.parse(readFileSync(path, "utf8")) as Partial<FedConfig>;
   if (typeof raw.name !== "string" || !raw.name) {
-    throw new Error(`fed.config.json: "name" is required.`);
+    throw new Error(`knit.config.json: "name" is required.`);
   }
   if (!Array.isArray(raw.shared)) {
-    throw new Error(`fed.config.json: "shared" must be an array of package names.`);
+    throw new Error(`knit.config.json: "shared" must be an array of package names.`);
   }
   if (!Array.isArray(raw.exposes)) {
-    throw new Error(`fed.config.json: "exposes" must be an array of paths.`);
+    throw new Error(`knit.config.json: "exposes" must be an array of paths.`);
   }
   return {
     name: raw.name,

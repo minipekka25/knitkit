@@ -1,6 +1,6 @@
-# `@fedkit/edge`
+# `@knitkit/edge`
 
-Edge-side composition for **fedkit** — stitch remote HTML fragments into one streamed page at
+Edge-side composition for **knitkit** — stitch remote HTML fragments into one streamed page at
 the edge, and inject the negotiated import map so the composed page shares dependencies. Built
 on Web standards (`fetch` + Web Streams), so it runs on **Cloudflare Workers**, **Deno Deploy**,
 and **Vercel Edge** (and Node 18+).
@@ -13,12 +13,12 @@ its own manifest and runs independently; the gateway just composes their output.
 Mark insertion points in your host template, then compose in an edge handler:
 
 ```ts
-import { composeResponse } from "@fedkit/edge";
+import { composeResponse } from "@knitkit/edge";
 
 const template = `<!doctype html><html><head><title>shop</title></head><body>
   <header>…</header>
-  <fedkit-fragment name="checkout">loading checkout…</fedkit-fragment>
-  <fedkit-fragment name="recommendations" />
+  <knitkit-fragment name="checkout">loading checkout…</knitkit-fragment>
+  <knitkit-fragment name="recommendations" />
   <footer>…</footer>
 </body></html>`;
 
@@ -40,7 +40,7 @@ export default {
   streamed in document order as they resolve.
 - A fragment that fails degrades to its **inline fallback** (the placeholder's inner HTML) or
   your `onError` — the page never 500s because one remote is down.
-- `<fedkit-fragment name="x" />` (self-closing) and `<fedkit-fragment name="x">fallback</fedkit-fragment>`
+- `<knitkit-fragment name="x" />` (self-closing) and `<knitkit-fragment name="x">fallback</knitkit-fragment>`
   are both supported.
 
 ## API

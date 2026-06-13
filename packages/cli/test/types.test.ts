@@ -26,11 +26,11 @@ const REMOTE_DTS = "declare const CartWidget: (props: { sku: string }) => string
 const here = dirname(fileURLToPath(import.meta.url));
 const runtimeDts = resolve(here, "..", "..", "runtime", "dist", "index.d.ts");
 
-describe("fedkit types generate", () => {
+describe("knitkit types generate", () => {
   it("emits a .d.ts per exposed module and patches the manifest", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "fedkit-tg-"));
+    const dir = mkdtempSync(join(tmpdir(), "knitkit-tg-"));
     writeFileSync(
-      join(dir, "fed.config.json"),
+      join(dir, "knit.config.json"),
       JSON.stringify({ name: "checkout", shared: [], exposes: ["./Widget.ts"] }),
     );
     writeFileSync(join(dir, "package.json"), JSON.stringify({ name: "x", version: "0.0.0" }));
@@ -49,20 +49,20 @@ describe("fedkit types generate", () => {
     expect(dts).toContain("WidgetProps");
     expect(dts).toContain("export default function Widget");
 
-    const manifest = JSON.parse(readFileSync(join(dir, "dist", "fed.manifest.json"), "utf8"));
+    const manifest = JSON.parse(readFileSync(join(dir, "dist", "knit.manifest.json"), "utf8"));
     expect(manifest.exposes["./Widget"].types).toBe("./types/Widget.d.ts");
 
     rmSync(dir, { recursive: true, force: true });
   });
 });
 
-describe("fedkit types sync", () => {
+describe("knitkit types sync", () => {
   let server: Server;
   let baseUrl: string;
 
   beforeAll(async () => {
     server = createServer((req, res) => {
-      if (req.url === "/checkout/fed.manifest.json") {
+      if (req.url === "/checkout/knit.manifest.json") {
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(REMOTE_MANIFEST));
       } else if (req.url === "/checkout/types/CartWidget.d.ts") {
@@ -82,29 +82,29 @@ describe("fedkit types sync", () => {
   });
 
   it("downloads remote .d.ts and generates a RemoteModules augmentation", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "fedkit-ts-"));
+    const dir = mkdtempSync(join(tmpdir(), "knitkit-ts-"));
     writeFileSync(
-      join(dir, "fed.host.json"),
+      join(dir, "knit.host.json"),
       JSON.stringify({
-        remotes: [{ name: "checkout", manifest: `${baseUrl}/checkout/fed.manifest.json` }],
-        typesDir: ".fedkit/types",
+        remotes: [{ name: "checkout", manifest: `${baseUrl}/checkout/knit.manifest.json` }],
+        typesDir: ".knitkit/types",
       }),
     );
 
     const { written, declaration, declarationPath } = await typesSyncCommand({ cwd: dir });
 
     expect(written.length).toBe(1);
-    expect(existsSync(join(dir, ".fedkit", "types", "checkout", "CartWidget.d.ts"))).toBe(true);
+    expect(existsSync(join(dir, ".knitkit", "types", "checkout", "CartWidget.d.ts"))).toBe(true);
     expect(declaration).toContain('import type R0 from "./checkout/CartWidget";');
     expect(declaration).toContain('"checkout/CartWidget": R0;');
-    expect(declaration).toContain('declare module "@fedkit/runtime"');
+    expect(declaration).toContain('declare module "@knitkit/runtime"');
 
     // Type-level proof: the generated augmentation must actually type loadRemote().
-    const typesDir = join(dir, ".fedkit", "types");
+    const typesDir = join(dir, ".knitkit", "types");
     writeFileSync(
       join(typesDir, "consumer.ts"),
       [
-        'import { loadRemote } from "@fedkit/runtime";',
+        'import { loadRemote } from "@knitkit/runtime";',
         // No contextual type fed into the call: the result type comes purely from the
         // augmentation. Without it, `w` would be Promise<unknown> and the assignment fails.
         'const w = loadRemote("checkout/CartWidget");',
@@ -126,7 +126,7 @@ describe("fedkit types sync", () => {
   });
 });
 
-/** Type-check the given files, resolving @fedkit/runtime to its built declarations. */
+/** Type-check the given files, resolving @knitkit/runtime to its built declarations. */
 function typecheck(rootNames: string[], baseDir: string): string[] {
   const program = ts.createProgram(rootNames, {
     noEmit: true,
@@ -136,7 +136,7 @@ function typecheck(rootNames: string[], baseDir: string): string[] {
     moduleResolution: ts.ModuleResolutionKind.Bundler,
     target: ts.ScriptTarget.ES2022,
     baseUrl: baseDir,
-    paths: { "@fedkit/runtime": [runtimeDts] },
+    paths: { "@knitkit/runtime": [runtimeDts] },
   });
   return ts
     .getPreEmitDiagnostics(program)

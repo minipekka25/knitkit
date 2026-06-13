@@ -1,4 +1,4 @@
-import type { ImportMap } from "@fedkit/runtime";
+import type { ImportMap } from "@knitkit/runtime";
 import { ModuleCache } from "./cache.js";
 import { verifyIntegrity } from "./sri.js";
 
@@ -64,10 +64,10 @@ export async function load(url: string, context: LoadContext, nextLoad: NextLoad
   try {
     res = await fetch(url);
   } catch (e) {
-    throw fedError("FED_ERR_LOAD_FAILED", `Failed to fetch remote module ${url}: ${(e as Error).message}`);
+    throw fedError("KNIT_ERR_LOAD_FAILED", `Failed to fetch remote module ${url}: ${(e as Error).message}`);
   }
   if (!res.ok) {
-    throw fedError("FED_ERR_LOAD_FAILED", `Failed to fetch remote module ${url}: HTTP ${res.status}`);
+    throw fedError("KNIT_ERR_LOAD_FAILED", `Failed to fetch remote module ${url}: HTTP ${res.status}`);
   }
   const source = await res.text();
 
@@ -76,7 +76,7 @@ export async function load(url: string, context: LoadContext, nextLoad: NextLoad
     const check = verifyIntegrity(source, integrity);
     if (!check.ok) {
       throw fedError(
-        "FED_ERR_SRI_MISMATCH",
+        "KNIT_ERR_SRI_MISMATCH",
         `Integrity check failed for ${url}: expected ${integrity}, got ${check.algorithm}-${check.actual}. ` +
           `The remote asset does not match its pinned hash — refusing to execute it.`,
       );

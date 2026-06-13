@@ -1,5 +1,5 @@
 {
-  "name": "fedkit-monorepo",
+  "name": "knitkit-monorepo",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,8 +7,8 @@
   "scripts": {
     "build": "npm run -ws --if-present build",
     "test": "npm run -ws --if-present test",
-    "typecheck": "npm run --workspace=@fedkit/runtime --workspace=@fedkit/cli --workspace=@fedkit/node --workspace=@fedkit/react --workspace=@fedkit/overrides --workspace=@fedkit/edge typecheck",
-    "size": "npm --workspace=@fedkit/runtime run size",
+    "typecheck": "npm run --workspace=@knitkit/runtime --workspace=@knitkit/cli --workspace=@knitkit/node --workspace=@knitkit/react --workspace=@knitkit/overrides --workspace=@knitkit/edge typecheck",
+    "size": "npm --workspace=@knitkit/runtime run size",
     "lint": "echo \"(lint stub)\"",
     "changeset": "changeset",
     "version": "changeset version",

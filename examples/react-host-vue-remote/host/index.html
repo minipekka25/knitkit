@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>fedkit demo — React host + Vue remote</title>
+    <title>knitkit demo — React host + Vue remote</title>
   </head>
   <body>
     <div id="root">loading…</div>
@@ -20,7 +20,7 @@
     <script type="importmap">
       {
         "imports": {
-          "@fedkit/runtime": "/runtime/index.js",
+          "@knitkit/runtime": "/runtime/index.js",
           "react": "https://esm.sh/react@18.3.1",
           "react-dom": "https://esm.sh/react-dom@18.3.1",
           "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
@@ -30,9 +30,9 @@
       }
     </script>
     <script type="module">
-      import { registerRemotes } from "@fedkit/runtime";
+      import { registerRemotes } from "@knitkit/runtime";
       await registerRemotes([
-        { name: "checkout", manifest: "/federation/fed.manifest.json" },
+        { name: "checkout", manifest: "/federation/knit.manifest.json" },
       ], {
         hostShared: {
           react: {

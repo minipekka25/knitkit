@@ -40,7 +40,7 @@ function renderToFile(script, env, outFile) {
   });
 }
 
-const tmp = mkdtempSync(join(tmpdir(), "fedkit-ssr-"));
+const tmp = mkdtempSync(join(tmpdir(), "knitkit-ssr-"));
 const outFile = join(tmp, "page.html");
 const remote = spawn(process.execPath, [join(here, "remote", "serve.mjs")], {
   env: { ...process.env, PORT: String(REMOTE_PORT) },
@@ -48,7 +48,7 @@ const remote = spawn(process.execPath, [join(here, "remote", "serve.mjs")], {
 });
 
 try {
-  await waitFor(`${remoteBase}/fed.manifest.json`);
+  await waitFor(`${remoteBase}/knit.manifest.json`);
   const childErr = await renderToFile(join(here, "server", "render.mjs"), { REMOTE_BASE: remoteBase }, outFile);
   if (!existsSync(outFile)) throw new Error("render produced no output file. stderr:\n" + childErr);
   const html = readFileSync(outFile, "utf8");

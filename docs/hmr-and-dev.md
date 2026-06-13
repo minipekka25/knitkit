@@ -1,12 +1,12 @@
 ---
 title: "Dev experience & HMR"
-description: "Why fedkit has no cross-remote HMR — and the local-override workflow you get instead."
+description: "Why knitkit has no cross-remote HMR — and the local-override workflow you get instead."
 ---
 
-The honest version: **fedkit has no cross-remote hot module replacement, and won't.**
+The honest version: **knitkit has no cross-remote hot module replacement, and won't.**
 
 Cross-remote HMR requires the host's bundler to own the module graph of every remote — which
-means bundler coupling, the exact thing fedkit refuses. Promising it would mean becoming the
+means bundler coupling, the exact thing knitkit refuses. Promising it would mean becoming the
 plugin treadmill we set out to avoid. So we don't.
 
 What you get instead is a workflow that's arguably nicer, borrowed from
@@ -17,29 +17,29 @@ What you get instead is a workflow that's arguably nicer, borrowed from
 Run each remote with its normal dev server and its normal HMR. Nothing about federation takes
 that away — within a single remote, edit-and-refresh is exactly as fast as it always was.
 
-## Point a remote at localhost with `@fedkit/overrides`
+## Point a remote at localhost with `@knitkit/overrides`
 
 The cross-app workflow is: develop one remote locally **against the deployed versions of
 everything else**. Wrap your remotes with `applyOverrides`, and mount the widget in dev:
 
 ```ts
-import { registerRemotes } from "@fedkit/runtime";
-import { applyOverrides, mountOverridesWidget } from "@fedkit/overrides";
+import { registerRemotes } from "@knitkit/runtime";
+import { applyOverrides, mountOverridesWidget } from "@knitkit/overrides";
 
 await registerRemotes(applyOverrides([
-  { name: "checkout", manifest: "https://cdn.example.com/checkout/fed.manifest.json" },
-  { name: "profile",  manifest: "https://cdn.example.com/profile/fed.manifest.json" },
+  { name: "checkout", manifest: "https://cdn.example.com/checkout/knit.manifest.json" },
+  { name: "profile",  manifest: "https://cdn.example.com/profile/knit.manifest.json" },
 ]));
 
 if (import.meta.env?.DEV) mountOverridesWidget({ remotes: ["checkout", "profile"] });
 ```
 
-Open the floating **⚙ fedkit overrides** panel, paste `http://localhost:5174/fed.manifest.json`
+Open the floating **⚙ knitkit overrides** panel, paste `http://localhost:5174/knit.manifest.json`
 for `checkout`, click **Use local**, and the page reloads with `checkout` served from your dev
 server while everything else stays deployed. Overrides live in `localStorage`
-(`fedkit:overrides`), so they're per-browser and never affect production or your teammates.
+(`knitkit:overrides`), so they're per-browser and never affect production or your teammates.
 
-See [`@fedkit/overrides`](../packages/overrides/README.md).
+See [`@knitkit/overrides`](../packages/overrides/README.md).
 
 ## Why this is the right trade
 

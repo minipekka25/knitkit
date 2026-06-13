@@ -1,6 +1,6 @@
 // Static file server for the React host. Bundles main.jsx on boot (with react and the
-// @fedkit/* packages marked external — the browser resolves them via the import map),
-// serves the built @fedkit/runtime and @fedkit/react, and proxies /federation/* to the
+// @knitkit/* packages marked external — the browser resolves them via the import map),
+// serves the built @knitkit/runtime and @knitkit/react, and proxies /federation/* to the
 // remote. No bundler plugins.
 import { createServer, request as httpRequest } from "node:http";
 import { readFile, stat, mkdir } from "node:fs/promises";
@@ -48,7 +48,7 @@ async function buildHostBundle() {
     target: ["es2022"],
     jsx: "automatic",
     loader: { ".js": "jsx", ".jsx": "jsx" },
-    external: ["react", "react-dom", "react-dom/client", "react/jsx-runtime", "@fedkit/runtime", "@fedkit/react"],
+    external: ["react", "react-dom", "react-dom/client", "react/jsx-runtime", "@knitkit/runtime", "@knitkit/react"],
     define: { "process.env.NODE_ENV": '"production"' },
   });
 }

@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { resolve, join, basename } from "node:path";
 import { loadConfig } from "../config.js";
-import type { Manifest } from "@fedkit/runtime";
+import type { Manifest } from "@knitkit/runtime";
 
 export interface TypesGenerateOptions {
   cwd?: string;
@@ -12,7 +12,7 @@ export interface TypesGenerateOptions {
  * Generate a `.d.ts` for each exposed module and patch the built manifest's `exposes[].types`.
  * Uses the project's installed TypeScript compiler (optional peer dependency).
  *
- * Run after `fedkit build` (it patches `dist/fed.manifest.json`).
+ * Run after `knitkit build` (it patches `dist/knit.manifest.json`).
  */
 export async function typesGenerateCommand(
   opts: TypesGenerateOptions = {},
@@ -21,12 +21,12 @@ export async function typesGenerateCommand(
   const outDir = resolve(cwd, opts.outDir ?? "dist");
   const config = loadConfig(cwd);
 
-  const manifestPath = join(outDir, "fed.manifest.json");
+  const manifestPath = join(outDir, "knit.manifest.json");
   let manifest: Manifest;
   try {
     manifest = JSON.parse(await readFile(manifestPath, "utf8")) as Manifest;
   } catch {
-    throw new Error(`No manifest at ${manifestPath}. Run "fedkit build" before "fedkit types generate".`);
+    throw new Error(`No manifest at ${manifestPath}. Run "knitkit build" before "knitkit types generate".`);
   }
 
   const ts = await loadTypeScript();
@@ -91,7 +91,7 @@ async function loadTypeScript(): Promise<typeof import("typescript")> {
     return mod.default ?? mod;
   } catch {
     throw new Error(
-      'fedkit types generate requires "typescript" to be installed in your project (npm i -D typescript).',
+      'knitkit types generate requires "typescript" to be installed in your project (npm i -D typescript).',
     );
   }
 }

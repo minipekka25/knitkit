@@ -1,17 +1,16 @@
 ---
-title: "fedkit"
+title: "knitkit"
 description: "Module federation, minus the bundler — runtime-first, on native ESM + import maps."
 ---
 
-fedkit is a tiny (< 5 KB), zero-dependency, **runtime-first** module federation system built on
+knitkit is a tiny (< 5 KB), zero-dependency, **runtime-first** module federation system built on
 native ES modules and import maps. The same manifest drives the browser, Node SSR, and the edge.
 
 <Note>
-  `fedkit` is a working codename — the `@fedkit/*` package scope is a placeholder until the
-  project is named. APIs are pre-1.0.
+  Pre-1.0, published under the `@knitkit/*` npm scope. APIs may change before 1.0.
 </Note>
 
-## Why fedkit
+## Why knitkit
 
 - **No bundler plugin.** A runtime, a manifest, and a small CLI. Externalize shared deps in one line.
 - **Singletons by construction.** One import-map entry per shared package → one instance, shared by the host and every remote via the browser module cache. The "more than one copy of React" bug class is gone by design.
@@ -23,11 +22,11 @@ native ES modules and import maps. The same manifest drives the browser, Node SS
 
 ```html
 <script type="importmap">
-  { "imports": { "@fedkit/runtime": "/runtime/index.js", "react": "https://esm.sh/react@18.3.1" } }
+  { "imports": { "@knitkit/runtime": "/runtime/index.js", "react": "https://esm.sh/react@18.3.1" } }
 </script>
 <script type="module">
-  import { registerRemotes, loadRemote } from "@fedkit/runtime";
-  await registerRemotes([{ name: "checkout", manifest: "/federation/fed.manifest.json" }]);
+  import { registerRemotes, loadRemote } from "@knitkit/runtime";
+  await registerRemotes([{ name: "checkout", manifest: "/federation/knit.manifest.json" }]);
   const CartWidget = await loadRemote("checkout/CartWidget");
 </script>
 ```

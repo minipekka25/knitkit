@@ -20,22 +20,22 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
-      # Build runtime first — @fedkit/cli and @fedkit/node consume it at runtime.
-      - run: npm run --workspace=@fedkit/runtime build
-      - run: npm run --workspace=@fedkit/cli build
-      - run: npm run --workspace=@fedkit/node build
-      - run: npm run --workspace=@fedkit/react build
-      - run: npm run --workspace=@fedkit/overrides build
-      - run: npm run --workspace=@fedkit/edge build
+      # Build runtime first — @knitkit/cli and @knitkit/node consume it at runtime.
+      - run: npm run --workspace=@knitkit/runtime build
+      - run: npm run --workspace=@knitkit/cli build
+      - run: npm run --workspace=@knitkit/node build
+      - run: npm run --workspace=@knitkit/react build
+      - run: npm run --workspace=@knitkit/overrides build
+      - run: npm run --workspace=@knitkit/edge build
       # Package unit tests only. The example's Playwright smoke test is network-
       # dependent (esm.sh) and browser-dependent; it is run locally (see README /
       # project_brief §9), not as a CI gate.
-      - run: npm run --workspace=@fedkit/runtime test
-      - run: npm run --workspace=@fedkit/cli test
-      - run: npm run --workspace=@fedkit/node test
-      - run: npm run --workspace=@fedkit/react test
-      - run: npm run --workspace=@fedkit/overrides test
-      - run: npm run --workspace=@fedkit/edge test
+      - run: npm run --workspace=@knitkit/runtime test
+      - run: npm run --workspace=@knitkit/cli test
+      - run: npm run --workspace=@knitkit/node test
+      - run: npm run --workspace=@knitkit/react test
+      - run: npm run --workspace=@knitkit/overrides test
+      - run: npm run --workspace=@knitkit/edge test
       - run: node packages/cli/dist/index.js validate spec/examples/checkout.manifest.json
-      - run: npm run --workspace=@fedkit/runtime size
+      - run: npm run --workspace=@knitkit/runtime size
         if: matrix.os == 'ubuntu-latest'

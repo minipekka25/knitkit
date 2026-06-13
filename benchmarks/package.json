@@ -1,5 +1,5 @@
 {
-  "name": "@fedkit/benchmarks",
+  "name": "@knitkit/benchmarks",
   "version": "0.0.0",
   "private": true,
   "type": "module",

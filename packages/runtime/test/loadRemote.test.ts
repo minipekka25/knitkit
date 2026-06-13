@@ -35,7 +35,7 @@ describe("loadRemote", () => {
       await loadRemote("unknown/Foo");
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("FED_ERR_NOT_REGISTERED");
+      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_NOT_REGISTERED");
     }
   });
 
@@ -84,7 +84,7 @@ describe("loadRemote", () => {
     expect(mod.tag).toBe("named-only");
   });
 
-  it("wraps an import failure in FED_ERR_LOAD_FAILED", async () => {
+  it("wraps an import failure in KNIT_ERR_LOAD_FAILED", async () => {
     setRegistrations([
       {
         name: "checkout",
@@ -97,7 +97,7 @@ describe("loadRemote", () => {
         baseUrl: "",
       },
     ]);
-    await expect(loadRemote("checkout/Broken")).rejects.toMatchObject({ code: "FED_ERR_LOAD_FAILED" });
+    await expect(loadRemote("checkout/Broken")).rejects.toMatchObject({ code: "KNIT_ERR_LOAD_FAILED" });
   });
 
   it("accepts specifier with and without leading './'", async () => {

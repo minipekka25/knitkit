@@ -1,17 +1,17 @@
-# `@fedkit/cli`
+# `@knitkit/cli`
 
-The build-time companion for **fedkit**. Emits the shared-dependency ESM assets and the manifest, computes SRI hashes, and generates/syncs types — no bundler plugin required.
+The build-time companion for **knitkit**. Emits the shared-dependency ESM assets and the manifest, computes SRI hashes, and generates/syncs types — no bundler plugin required.
 
 ```bash
-fedkit build [cwd]            # emit dist/shared/*, dist/exposes/*, dist/fed.manifest.json
-fedkit types generate [cwd]   # generate .d.ts per exposed module, patch the manifest
-fedkit types sync [cwd]       # fetch remotes' types (fed.host.json) so loadRemote() is typed
-fedkit validate <manifest>    # validate a manifest against the spec
+knitkit build [cwd]            # emit dist/shared/*, dist/exposes/*, dist/knit.manifest.json
+knitkit types generate [cwd]   # generate .d.ts per exposed module, patch the manifest
+knitkit types sync [cwd]       # fetch remotes' types (knit.host.json) so loadRemote() is typed
+knitkit validate <manifest>    # validate a manifest against the spec
 ```
 
-## `fedkit build`
+## `knitkit build`
 
-Reads `fed.config.json`:
+Reads `knit.config.json`:
 
 ```json
 { "name": "checkout", "shared": ["react", "react-dom"], "exposes": ["./CartWidget.tsx"] }
@@ -23,14 +23,14 @@ For each `shared` package it resolves the **exact installed version** from your 
 
 `loadRemote()` parity with Module Federation's most-praised feature — without a bundler plugin.
 
-- **Remote:** `fedkit types generate` runs your installed TypeScript compiler over each exposed module, writes `dist/types/<Name>.d.ts`, and patches `exposes[].types` in the manifest. (`typescript` is an optional peer dependency — only needed for this command.)
-- **Host:** `fedkit types sync` reads `fed.host.json`, fetches each remote's `.d.ts`, and generates `.fedkit/types/fedkit-remotes.d.ts` — a declaration that augments `@fedkit/runtime`'s `RemoteModules`, making `loadRemote("checkout/CartWidget")` fully typed. Add the types dir to your tsconfig `include`.
+- **Remote:** `knitkit types generate` runs your installed TypeScript compiler over each exposed module, writes `dist/types/<Name>.d.ts`, and patches `exposes[].types` in the manifest. (`typescript` is an optional peer dependency — only needed for this command.)
+- **Host:** `knitkit types sync` reads `knit.host.json`, fetches each remote's `.d.ts`, and generates `.knitkit/types/knitkit-remotes.d.ts` — a declaration that augments `@knitkit/runtime`'s `RemoteModules`, making `loadRemote("checkout/CartWidget")` fully typed. Add the types dir to your tsconfig `include`.
 
 ```json
-// fed.host.json
+// knit.host.json
 {
-  "remotes": [{ "name": "checkout", "manifest": "https://cdn.example.com/checkout/fed.manifest.json" }],
-  "typesDir": ".fedkit/types"
+  "remotes": [{ "name": "checkout", "manifest": "https://cdn.example.com/checkout/knit.manifest.json" }],
+  "typesDir": ".knitkit/types"
 }
 ```
 

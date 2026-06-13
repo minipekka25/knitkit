@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { render, screen, waitFor, cleanup } from "@testing-library/react";
-import { loadRemote } from "@fedkit/runtime";
+import { loadRemote } from "@knitkit/runtime";
 import { RemoteComponent, lazyRemote, clearRemoteCache } from "../src/index.js";
 
-vi.mock("@fedkit/runtime", () => ({
+vi.mock("@knitkit/runtime", () => ({
   loadRemote: vi.fn(),
 }));
 

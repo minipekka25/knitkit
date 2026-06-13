@@ -1,10 +1,10 @@
 {
-  "name": "@fedkit/cli",
+  "name": "@knitkit/cli",
   "version": "0.0.0",
-  "description": "CLI for fedkit: shared-deps emitter, manifest generation, integrity hashes, types sync.",
+  "description": "CLI for knitkit: shared-deps emitter, manifest generation, integrity hashes, types sync.",
   "type": "module",
   "bin": {
-    "fedkit": "./dist/index.js"
+    "knitkit": "./dist/index.js"
   },
   "files": ["dist"],
   "scripts": {
@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@fedkit/runtime": "*",
+    "@knitkit/runtime": "*",
     "esbuild": "^0.21.5"
   },
   "peerDependencies": {

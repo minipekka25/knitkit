@@ -7,7 +7,7 @@ export interface OverridesWidgetOptions {
   placeholder?: string;
 }
 
-const WIDGET_ID = "fedkit-overrides-widget";
+const WIDGET_ID = "knitkit-overrides-widget";
 
 function reload(): void {
   try {
@@ -39,7 +39,7 @@ export function mountOverridesWidget(options: OverridesWidgetOptions = {}): () =
   if (typeof document === "undefined") return () => {};
   document.getElementById(WIDGET_ID)?.remove();
 
-  const placeholder = options.placeholder ?? "http://localhost:5174/fed.manifest.json";
+  const placeholder = options.placeholder ?? "http://localhost:5174/knit.manifest.json";
   const overrides = getOverrides();
   const names = Array.from(new Set([...(options.remotes ?? []), ...Object.keys(overrides)]));
 
@@ -47,15 +47,15 @@ export function mountOverridesWidget(options: OverridesWidgetOptions = {}): () =
 
   const panel = el(
     "div",
-    { dataset: { testid: "fedkit-overrides-panel" } },
+    { dataset: { testid: "knitkit-overrides-panel" } },
     "display:none;background:#111;color:#eee;border:1px solid #333;border-radius:8px;padding:12px;width:320px;box-shadow:0 6px 24px rgba(0,0,0,.4)",
   );
 
   const toggle = el(
     "button",
     {
-      textContent: "⚙ fedkit overrides" + (Object.keys(overrides).length ? ` (${Object.keys(overrides).length})` : ""),
-      dataset: { testid: "fedkit-overrides-toggle" },
+      textContent: "⚙ knitkit overrides" + (Object.keys(overrides).length ? ` (${Object.keys(overrides).length})` : ""),
+      dataset: { testid: "knitkit-overrides-toggle" },
     },
     "background:#111;color:#eee;border:1px solid #333;border-radius:8px;padding:6px 10px;cursor:pointer",
   );
@@ -71,20 +71,20 @@ export function mountOverridesWidget(options: OverridesWidgetOptions = {}): () =
 
   for (const name of names) {
     const current = overrides[name];
-    const row = el("div", { dataset: { testid: "fedkit-override-row", remote: name } }, "margin-top:10px;border-top:1px solid #333;padding-top:8px");
+    const row = el("div", { dataset: { testid: "knitkit-override-row", remote: name } }, "margin-top:10px;border-top:1px solid #333;padding-top:8px");
     row.appendChild(el("label", { textContent: name }, "display:block;font-weight:600"));
     if (current) {
-      row.appendChild(el("div", { textContent: `→ ${current}`, dataset: { testid: "fedkit-override-status" } }, "color:#7dd3fc;word-break:break-all;margin:2px 0"));
+      row.appendChild(el("div", { textContent: `→ ${current}`, dataset: { testid: "knitkit-override-status" } }, "color:#7dd3fc;word-break:break-all;margin:2px 0"));
     }
-    const input = el("input", { value: current ?? "", placeholder, dataset: { testid: "fedkit-override-input" } }, "width:100%;box-sizing:border-box;margin:4px 0;padding:4px;background:#000;color:#eee;border:1px solid #444;border-radius:4px");
-    const apply = el("button", { textContent: "Use local", dataset: { testid: "fedkit-override-apply" } }, "margin-right:6px;cursor:pointer");
+    const input = el("input", { value: current ?? "", placeholder, dataset: { testid: "knitkit-override-input" } }, "width:100%;box-sizing:border-box;margin:4px 0;padding:4px;background:#000;color:#eee;border:1px solid #444;border-radius:4px");
+    const apply = el("button", { textContent: "Use local", dataset: { testid: "knitkit-override-apply" } }, "margin-right:6px;cursor:pointer");
     apply.addEventListener("click", () => {
       const url = input.value.trim();
       if (!url) return;
       setOverride(name, url);
       reload();
     });
-    const clear = el("button", { textContent: "Clear", dataset: { testid: "fedkit-override-clear" } }, "cursor:pointer");
+    const clear = el("button", { textContent: "Clear", dataset: { testid: "knitkit-override-clear" } }, "cursor:pointer");
     clear.addEventListener("click", () => {
       removeOverride(name);
       reload();
@@ -93,7 +93,7 @@ export function mountOverridesWidget(options: OverridesWidgetOptions = {}): () =
     panel.appendChild(row);
   }
 
-  const clearAll = el("button", { textContent: "Clear all & reload", dataset: { testid: "fedkit-overrides-clear-all" } }, "margin-top:12px;cursor:pointer");
+  const clearAll = el("button", { textContent: "Clear all & reload", dataset: { testid: "knitkit-overrides-clear-all" } }, "margin-top:12px;cursor:pointer");
   clearAll.addEventListener("click", () => {
     clearOverrides();
     reload();

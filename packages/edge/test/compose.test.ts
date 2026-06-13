@@ -12,8 +12,8 @@ function mockFetch(routes: Record<string, { status?: number; body: string }>): t
 
 const TEMPLATE = `<!doctype html><html><head><title>shell</title></head><body>
 <header>host</header>
-<fedkit-fragment name="checkout">loading checkout…</fedkit-fragment>
-<fedkit-fragment name="profile" />
+<knitkit-fragment name="checkout">loading checkout…</knitkit-fragment>
+<knitkit-fragment name="profile" />
 <footer>host</footer>
 </body></html>`;
 
@@ -45,7 +45,7 @@ describe("compose", () => {
     });
     expect(html).toContain("<section id=cart>CART</section>");
     expect(html).toContain("<section id=me>ME</section>");
-    expect(html).not.toContain("<fedkit-fragment");
+    expect(html).not.toContain("<knitkit-fragment");
     // order: header before cart before me before footer
     expect(html.indexOf("host")).toBeLessThan(html.indexOf("CART"));
     expect(html.indexOf("CART")).toBeLessThan(html.indexOf("ME"));
@@ -70,12 +70,12 @@ describe("compose", () => {
       fetch: mockFetch({ "https://down.example/f": { status: 503, body: "err" } }),
     });
     expect(html).toContain("loading checkout…"); // the inline fallback
-    expect(html).not.toContain("<fedkit-fragment");
+    expect(html).not.toContain("<knitkit-fragment");
   });
 
   it("uses onError when provided", async () => {
     const html = await compose({
-      template: `<div><fedkit-fragment name="x">fb</fedkit-fragment></div>`,
+      template: `<div><knitkit-fragment name="x">fb</knitkit-fragment></div>`,
       fragments: [{ name: "x", src: "https://down/f" }],
       fetch: mockFetch({}),
       onError: (f, e) => `<!-- ${f.name}: ${e.message.includes("404") ? "404" : "err"} -->`,
@@ -85,7 +85,7 @@ describe("compose", () => {
 
   it("emits a comment for a placeholder with no registered fragment", async () => {
     const html = await compose({
-      template: `<div><fedkit-fragment name="ghost" /></div>`,
+      template: `<div><knitkit-fragment name="ghost" /></div>`,
       fragments: [],
       fetch: mockFetch({}),
     });
@@ -96,7 +96,7 @@ describe("compose", () => {
 describe("composeStream / composeResponse", () => {
   it("composeStream yields a readable stream of bytes", async () => {
     const stream = composeStream({
-      template: `a<fedkit-fragment name="x"/>b`,
+      template: `a<knitkit-fragment name="x"/>b`,
       fragments: [{ name: "x", src: "https://x/f" }],
       fetch: mockFetch({ "https://x/f": { body: "X" } }),
     });
@@ -106,7 +106,7 @@ describe("composeStream / composeResponse", () => {
 
   it("composeResponse returns an HTML Response", async () => {
     const res = composeResponse({
-      template: `<p><fedkit-fragment name="x"/></p>`,
+      template: `<p><knitkit-fragment name="x"/></p>`,
       fragments: [{ name: "x", src: "https://x/f" }],
       fetch: mockFetch({ "https://x/f": { body: "Y" } }),
     });

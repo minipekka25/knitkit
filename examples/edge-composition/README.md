@@ -1,7 +1,7 @@
 # Edge composition (Tier-2 fragment composition)
 
 One page assembled at the edge from **independent apps** — a React fragment and a
-framework-less HTML fragment — stitched by [`@fedkit/edge`](../../packages/edge/README.md),
+framework-less HTML fragment — stitched by [`@knitkit/edge`](../../packages/edge/README.md),
 with the import map injected by the gateway. No shared runtime; each fragment is its own app.
 
 This is **Tier-2** federation (`project_brief.md` §3.7): unlike Tier-1 `<RemoteComponent>`
@@ -11,14 +11,14 @@ This is **Tier-2** federation (`project_brief.md` §3.7): unlike Tier-1 `<Remote
 ```
 fragments/product   → a React app rendered with react-dom/server  (port 5204)
 fragments/reviews   → plain HTML, no framework                     (port 5205)
-gateway.mjs         → @fedkit/edge composes them into the shell     (port 5203)
+gateway.mjs         → @knitkit/edge composes them into the shell     (port 5203)
 ```
 
 ## Run it
 
 ```bash
 # from the repo root
-npm run --workspace=@fedkit/edge build
+npm run --workspace=@knitkit/edge build
 npm --prefix examples/edge-composition test        # boots fragments + gateway, asserts the composed page
 # or live:
 npm --prefix examples/edge-composition run dev:product
@@ -33,5 +33,5 @@ inline fallback instead of failing the page.
 
 ## Related
 
-- Edge package: [`@fedkit/edge`](../../packages/edge/README.md)
-- The client-side Tier-2 path: `<RemoteFragment>` in [`@fedkit/react`](../../packages/react/README.md).
+- Edge package: [`@knitkit/edge`](../../packages/edge/README.md)
+- The client-side Tier-2 path: `<RemoteFragment>` in [`@knitkit/react`](../../packages/react/README.md).

@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { RemoteComponent } from "@fedkit/react";
+import { RemoteComponent } from "@knitkit/react";
 
 // registerRemotes already ran in index.html's bootstrap (before this module imported),
 // so the "widgets" remote is registered and loadRemote can resolve "widgets/Counter".
@@ -9,7 +9,7 @@ function App() {
   return React.createElement(
     "div",
     { style: { fontFamily: "system-ui", padding: 24, maxWidth: 720, margin: "0 auto" } },
-    React.createElement("h1", null, "fedkit demo"),
+    React.createElement("h1", null, "knitkit demo"),
     React.createElement(
       "p",
       { style: { color: "#555" } },

@@ -1,11 +1,11 @@
 # Node SSR of a federated React component
 
-Server-side renders a **federated React component** with `@fedkit/node` — the same manifest
+Server-side renders a **federated React component** with `@knitkit/node` — the same manifest
 that drives the browser, driving the server. No bundler plugins.
 
 ```bash
 # from the repo root
-npm run --workspace=@fedkit/node build
+npm run --workspace=@knitkit/node build
 npm --prefix examples/node-ssr test        # boots the remote, renders, asserts the output
 # or run it live:
 npm --prefix examples/node-ssr run dev:remote   # remote on :5194
@@ -16,7 +16,7 @@ npm --prefix examples/node-ssr run dev          # SSR host on :5193
 
 `server/render.mjs`:
 
-1. Fetches the remote's manifest and installs the fedkit loader hooks with
+1. Fetches the remote's manifest and installs the knitkit loader hooks with
    `registerFederation(...)`. The server import map resolves `react` to the **local** React
    that `react-dom/server` uses, so a single React renders the whole tree — the SSR
    singleton. The remote module is **SRI-pinned**; tampered code is refused before execution.

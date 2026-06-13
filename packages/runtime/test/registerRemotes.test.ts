@@ -60,20 +60,20 @@ describe("registerRemotes", () => {
       ({
         ok: true,
         status: 200,
-        url: "https://cdn.example.com/checkout/fed.manifest.json",
+        url: "https://cdn.example.com/checkout/knit.manifest.json",
         json: async () => manifest(),
       }) as unknown as Response) as typeof globalThis.fetch;
 
     const result = await registerRemotes([
-      { name: "checkout", manifest: "https://cdn.example.com/checkout/fed.manifest.json" },
+      { name: "checkout", manifest: "https://cdn.example.com/checkout/knit.manifest.json" },
     ]);
     expect(result.importMap.imports.react).toBe("https://cdn.example.com/checkout/shared/react-18.3.1.js");
 
     // The exposed module's URL also resolves against the response URL.
-    await expect(loadRemote("checkout/CartWidget")).rejects.toMatchObject({ code: "FED_ERR_LOAD_FAILED" });
+    await expect(loadRemote("checkout/CartWidget")).rejects.toMatchObject({ code: "KNIT_ERR_LOAD_FAILED" });
   });
 
-  it("wraps a network failure in FED_ERR_LOAD_FAILED", async () => {
+  it("wraps a network failure in KNIT_ERR_LOAD_FAILED", async () => {
     globalThis.fetch = (async () => {
       throw new Error("connection refused");
     }) as typeof globalThis.fetch;
@@ -81,18 +81,18 @@ describe("registerRemotes", () => {
       await registerRemotes([{ name: "checkout", manifest: "https://down.example.com/m.json" }]);
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("FED_ERR_LOAD_FAILED");
+      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_LOAD_FAILED");
     }
   });
 
-  it("wraps a non-OK HTTP response in FED_ERR_LOAD_FAILED", async () => {
+  it("wraps a non-OK HTTP response in KNIT_ERR_LOAD_FAILED", async () => {
     globalThis.fetch = (async () =>
       ({ ok: false, status: 404, url: "https://cdn/m.json", json: async () => ({}) }) as unknown as Response) as typeof globalThis.fetch;
     try {
       await registerRemotes([{ name: "checkout", manifest: "https://cdn/m.json" }]);
       expect.fail("expected throw");
     } catch (e) {
-      expect(isFedkitError(e) && e.code).toBe("FED_ERR_LOAD_FAILED");
+      expect(isFedkitError(e) && e.code).toBe("KNIT_ERR_LOAD_FAILED");
       expect(isFedkitError(e) && e.message).toMatch(/404/);
     }
   });

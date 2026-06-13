@@ -1,8 +1,8 @@
-import type { ImportMap } from "@fedkit/runtime";
+import type { ImportMap } from "@knitkit/runtime";
 import { serializeImportMap } from "./serialize.js";
 
 export interface Fragment {
-  /** Matches the `name` of a `<fedkit-fragment>` placeholder in the template. */
+  /** Matches the `name` of a `<knitkit-fragment>` placeholder in the template. */
   name: string;
   /** URL to fetch the fragment's HTML from. */
   src: string;
@@ -13,8 +13,8 @@ export interface Fragment {
 export interface ComposeOptions {
   /**
    * Host HTML template. Mark insertion points with:
-   *   `<fedkit-fragment name="checkout">optional fallback</fedkit-fragment>`
-   * or the self-closing `<fedkit-fragment name="checkout" />`.
+   *   `<knitkit-fragment name="checkout">optional fallback</knitkit-fragment>`
+   * or the self-closing `<knitkit-fragment name="checkout" />`.
    */
   template: string;
   /** Fragments to fetch and inline. */
@@ -29,7 +29,7 @@ export interface ComposeOptions {
 
 type Segment = { type: "text"; value: string } | { type: "fragment"; name: string; fallback: string };
 
-const FRAGMENT_RE = /<fedkit-fragment\s+name="([^"]+)"\s*(?:\/>|>([\s\S]*?)<\/fedkit-fragment>)/g;
+const FRAGMENT_RE = /<knitkit-fragment\s+name="([^"]+)"\s*(?:\/>|>([\s\S]*?)<\/knitkit-fragment>)/g;
 
 /** Split a template into ordered text and fragment segments. Exported for testing. */
 export function parseTemplate(template: string): Segment[] {
@@ -79,7 +79,7 @@ export function composeStream(options: ComposeOptions): ReadableStream<Uint8Arra
           }
           const frag = byName.get(seg.name);
           if (!frag) {
-            controller.enqueue(encoder.encode(seg.fallback || `<!-- fedkit: no fragment registered for "${seg.name}" -->`));
+            controller.enqueue(encoder.encode(seg.fallback || `<!-- knitkit: no fragment registered for "${seg.name}" -->`));
             continue;
           }
           let html: string;
@@ -88,7 +88,7 @@ export function composeStream(options: ComposeOptions): ReadableStream<Uint8Arra
           } catch (e) {
             html = options.onError
               ? options.onError(frag, e as Error)
-              : seg.fallback || `<!-- fedkit: fragment "${seg.name}" failed: ${(e as Error).message} -->`;
+              : seg.fallback || `<!-- knitkit: fragment "${seg.name}" failed: ${(e as Error).message} -->`;
           }
           controller.enqueue(encoder.encode(html));
         }

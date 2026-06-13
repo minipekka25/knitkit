@@ -3,12 +3,12 @@ title: "Security: SRI, CSP, CORS"
 description: "Pin and verify every remote module — Subresource Integrity, CSP, and CORS guidance."
 ---
 
-Loading code from another origin at runtime is powerful and dangerous. fedkit's headline
+Loading code from another origin at runtime is powerful and dangerous. knitkit's headline
 guidance: **pin and verify every remote module's hash.**
 
 ## Subresource Integrity (SRI)
 
-`fedkit build` computes a `sha384` hash for each shared asset and records it in the manifest:
+`knitkit build` computes a `sha384` hash for each shared asset and records it in the manifest:
 
 ```json
 "shared": {
@@ -23,8 +23,8 @@ How that hash is enforced depends on the environment:
   [`integrity` key](https://github.com/WICG/import-maps#subresource-integrity), so the browser
   natively refuses a tampered shared module. Available in Chrome 127 / Firefox 138 /
   Safari 18.4 (re-verify at ship time).
-- **Node SSR** — `@fedkit/node` verifies the hash itself **before executing** any fetched
-  remote module. A mismatch throws a coded `FED_ERR_SRI_MISMATCH` and the module never runs.
+- **Node SSR** — `@knitkit/node` verifies the hash itself **before executing** any fetched
+  remote module. A mismatch throws a coded `KNIT_ERR_SRI_MISMATCH` and the module never runs.
   This is covered by tests in the package.
 
 ### Honest limitation: exposed modules in the browser
@@ -34,7 +34,7 @@ by `loadRemote` in the browser is only hash-verified if it goes through an impor
 that carries integrity. Options:
 
 1. Put exposed modules in the import map with integrity (so the browser enforces it), or
-2. Rely on `@fedkit/node`'s server-side verification (which always runs), or
+2. Rely on `@knitkit/node`'s server-side verification (which always runs), or
 3. Pin remotes you trust and serve them over HTTPS from an origin you control.
 
 Manifest **signing** (verifying the manifest itself, not just the assets) is on the roadmap.
@@ -68,8 +68,8 @@ well-known footgun in older plugin-based setups. The remote's static host must r
 Access-Control-Allow-Origin: https://your-host.example.com   /* or * for public assets */
 ```
 
-for `fed.manifest.json`, exposed modules, and shared assets. If a remote 404s or omits CORS,
-`registerRemotes` / `loadRemote` fail with a coded `FED_ERR_LOAD_FAILED` whose suggestion
+for `knit.manifest.json`, exposed modules, and shared assets. If a remote 404s or omits CORS,
+`registerRemotes` / `loadRemote` fail with a coded `KNIT_ERR_LOAD_FAILED` whose suggestion
 points at CORS and reachability.
 
 ## Trust model, briefly
