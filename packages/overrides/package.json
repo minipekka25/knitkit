@@ -30,5 +30,13 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minipekka25/knitkit.git",
+    "directory": "packages/overrides"
+  },
+  "homepage": "https://github.com/minipekka25/knitkit/tree/main/packages/overrides#readme",
+  "bugs": "https://github.com/minipekka25/knitkit/issues",
+  "license": "MIT"
 }

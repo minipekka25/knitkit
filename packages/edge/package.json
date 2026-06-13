@@ -32,5 +32,13 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minipekka25/knitkit.git",
+    "directory": "packages/edge"
+  },
+  "homepage": "https://github.com/minipekka25/knitkit/tree/main/packages/edge#readme",
+  "bugs": "https://github.com/minipekka25/knitkit/issues",
+  "license": "MIT"
 }
