@@ -37,6 +37,7 @@ Two runnable examples (both zero bundler plugins, both with a self-booting Playw
 - [`examples/react-host-vue-remote`](./examples/react-host-vue-remote) — a **React host mounting a Vue 3 remote**, one shared state object proven identical across the framework boundary.
 - [`examples/react-host-react-remote`](./examples/react-host-react-remote) — a **React host rendering a React remote via `<RemoteComponent>`**, sharing one React instance so the remote's hooks work across the boundary.
 - [`examples/node-ssr`](./examples/node-ssr) — **Node SSR** of a federated React component via `@fedkit/node` loader hooks (SRI-verified), with the import map serialized for hydration parity.
+- [`examples/edge-composition`](./examples/edge-composition) — **Tier-2 edge composition**: independent apps (a React fragment + a framework-less fragment) stitched into one streamed page by `@fedkit/edge`.
 
 The Vue demo:
 

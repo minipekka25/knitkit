@@ -17,7 +17,10 @@ named (`project_brief.md` §10).
 - **`@fedkit/overrides`** — local-override dev tool.
 - **`@fedkit/edge`** — ESI-style HTML fragment stream-stitching + import-map injection for
   Cloudflare Workers / Deno Deploy / Vercel Edge (Web-standard `fetch` + Web Streams).
-- **Examples** — React+Vue, React `<RemoteComponent>`, and Node SSR, each with a smoke test.
+- **Tier-2 fragment composition** — `@fedkit/react`'s `<RemoteFragment>` (client boundary) and
+  the [edge-composition example](../examples/edge-composition) (independent apps stitched at the
+  edge). Isolated fragments, each its own framework — no shared React.
+- **Examples** — React+Vue, React `<RemoteComponent>`, Node SSR, and edge composition, each with a smoke test.
 - **Release discipline** — changesets configured (publish gated on the name decision).
 
 ## Next
@@ -36,7 +39,7 @@ named (`project_brief.md` §10).
 
 - Runtime SRI enforcement for exposed modules in the browser (platform-limited — see
   [Security](./security.md)); manifest signing.
-- Tier-2 RSC fragment composition (built on `@fedkit/edge`); monitor `react-server-dom-esm` for Tier-3.
+- Tier-3 (watch, don't build): module-level RSC/Flight federation — monitor `react-server-dom-esm`.
 - A benchmark harness (cold-load + bytes shipped vs Module Federation).
 - `--auto` shared-list proposer, if demanded.
 

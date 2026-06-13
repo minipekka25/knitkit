@@ -33,6 +33,21 @@ The remote's exposed module must **default-export a React component**. Register 
 | `clearRemoteCache(specifier?)` | Drop the cached lazy component to retry a remote that previously failed. |
 | `<RemoteErrorBoundary fallback onError>` | The error boundary used internally, exported for standalone use. |
 
+## `<RemoteFragment>` — Tier-2 (isolated fragments)
+
+When you don't want to share React — embed a remote fragment's **rendered HTML** into the
+host, with its own framework, no singleton:
+
+```tsx
+import { RemoteFragment } from "@fedkit/react";
+<RemoteFragment src="https://reviews.example/fragment" fallback={<Spinner />} as="section" />;
+```
+
+It fetches the fragment and embeds the HTML (via `dangerouslySetInnerHTML`), so `<script>`
+tags do **not** execute — it's static embedding. For interactivity, have the fragment ship its
+own bootstrap or use an iframe; for edge-side stream stitching see [`@fedkit/edge`](../edge/README.md).
+This sidesteps the shared-React constraint entirely (no "invalid hook call").
+
 ## Notes
 
 - A remote that fails to load is cached as failed (React.lazy memoizes the rejection). Call `clearRemoteCache(name)` and re-render to retry.

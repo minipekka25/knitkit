@@ -1,0 +1,12 @@
+{
+  "name": "@fedkit/example-edge-composition",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:product": "node fragments/product/server.mjs",
+    "dev:reviews": "node fragments/reviews/server.mjs",
+    "dev:gateway": "node gateway.mjs",
+    "test": "node test.mjs"
+  }
+}
