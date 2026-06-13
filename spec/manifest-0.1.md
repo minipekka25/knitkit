@@ -56,7 +56,7 @@ Expose keys are written with a leading `./` (e.g. `"./CartWidget"`). When callin
 | Field | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `version` | semver string | yes | The exact version this participant contributes. |
-| `requiredVersion` | semver range | yes | The range of versions this participant can accept. Supports `^`, `~`, `>=`, `>`, `<=`, `<`, `=`, x-ranges (`1.x`, `1.2.x`, `*`), and exact. |
+| `requiredVersion` | semver range | yes | The range of versions this participant can accept. Supports `^`, `~` (including partial operands like `^18`, `~1.2`), `>=`, `>`, `<=`, `<`, `=`, x-ranges (`1.x`, `1.2.x`, `*`), exact, whitespace intersections (`>=1.2.0 <2.0.0`), and `\|\|` unions (`^17 \|\| ^18`). Hyphen ranges (`1.2.3 - 2.3.4`) are not supported. |
 | `singleton` | bool | no, default `true` | If `true`, a conflict throws `KNIT_ERR_SINGLETON_CONFLICT`. If `false`, an outlier is loaded via a `scopes` entry. |
 | `url` | string (URL or path) | yes | URL to the prebundled ESM asset for this package. |
 | `integrity` | string | no | SRI hash (`sha384-...`). Computed by `@knitkit/cli` at build time. Enforced in Phase 2. |

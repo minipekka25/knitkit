@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/minipekka25/knitkit/actions/workflows/ci.yml/badge.svg)](https://github.com/minipekka25/knitkit/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@knitkit/runtime.svg)](https://www.npmjs.com/package/@knitkit/runtime)
-[![runtime size](https://img.shields.io/badge/runtime-3.5%20KB%20brotli-brightgreen.svg)](./benchmarks)
+[![runtime size](https://img.shields.io/badge/runtime-3.75%20KB%20brotli-brightgreen.svg)](./benchmarks)
 [![docs](https://img.shields.io/badge/docs-knitkit.mintlify.app-blue.svg)](https://knitkit.mintlify.app)
 [![license](https://img.shields.io/npm/l/@knitkit/runtime.svg)](./LICENSE)
 

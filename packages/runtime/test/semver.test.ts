@@ -147,17 +147,73 @@ describe("semver", () => {
     });
 
     it("isValidRange accepts supported ranges", () => {
-      for (const r of ["^18.2.0", "~1.2.3", "1.x", "1.2.x", "*", ">=1.0.0", "<2.0.0", "=1.2.3", "1", "1.2"]) {
+      for (const r of [
+        "^18.2.0", "~1.2.3", "1.x", "1.2.x", "*", ">=1.0.0", "<2.0.0", "=1.2.3", "1", "1.2",
+        "^18", "~1", "^1.2", "^17 || ^18", ">=1.2.0 <2.0.0", ">= 1.2.0",
+      ]) {
         expect(isValidRange(r)).toBe(true);
       }
     });
 
-    it("isValidRange rejects ranges the v0 matcher cannot parse", () => {
-      // Partial caret/tilde and union ranges are not supported in v0.
-      expect(isValidRange("^1")).toBe(false);
-      expect(isValidRange("~1")).toBe(false);
+    it("isValidRange rejects ranges the matcher cannot parse", () => {
       expect(isValidRange("not-a-range")).toBe(false);
       expect(isValidRange(">=garbage")).toBe(false);
+      expect(isValidRange("^1.2.3 || nope")).toBe(false);
+    });
+  });
+
+  describe("union (||) ranges", () => {
+    it("satisfies if any union member matches", () => {
+      expect(satisfies("17.0.2", "^17 || ^18")).toBe(true);
+      expect(satisfies("18.3.1", "^17 || ^18")).toBe(true);
+      expect(satisfies("16.8.0", "^17 || ^18")).toBe(false);
+      expect(satisfies("19.0.0", "^17 || ^18")).toBe(false);
+    });
+
+    it("maxSatisfying picks the highest across all members", () => {
+      expect(maxSatisfying(["16.8.0", "17.0.2", "18.3.1", "19.0.0"], "^17 || ^18")).toBe("18.3.1");
+    });
+  });
+
+  describe("intersection (whitespace) ranges", () => {
+    it("requires every comparator in the set", () => {
+      expect(satisfies("1.5.0", ">=1.2.0 <2.0.0")).toBe(true);
+      expect(satisfies("1.2.0", ">=1.2.0 <2.0.0")).toBe(true);
+      expect(satisfies("2.0.0", ">=1.2.0 <2.0.0")).toBe(false);
+      expect(satisfies("1.1.0", ">=1.2.0 <2.0.0")).toBe(false);
+    });
+
+    it("tolerates a space between an operator and its version", () => {
+      expect(satisfies("1.5.0", ">= 1.2.0 < 2.0.0")).toBe(true);
+    });
+  });
+
+  describe("partial caret / tilde", () => {
+    it("^18 == ^18.0.0", () => {
+      expect(satisfies("18.3.1", "^18")).toBe(true);
+      expect(satisfies("18.0.0", "^18")).toBe(true);
+      expect(satisfies("19.0.0", "^18")).toBe(false);
+      expect(satisfies("17.9.9", "^18")).toBe(false);
+    });
+
+    it("^1.2 allows minor/patch up to <2.0.0", () => {
+      expect(satisfies("1.9.9", "^1.2")).toBe(true);
+      expect(satisfies("1.1.0", "^1.2")).toBe(false);
+      expect(satisfies("2.0.0", "^1.2")).toBe(false);
+    });
+
+    it("^0 == <1.0.0 and ^0.0 == <0.1.0", () => {
+      expect(satisfies("0.9.9", "^0")).toBe(true);
+      expect(satisfies("1.0.0", "^0")).toBe(false);
+      expect(satisfies("0.0.9", "^0.0")).toBe(true);
+      expect(satisfies("0.1.0", "^0.0")).toBe(false);
+    });
+
+    it("~1 == <2.0.0 and ~1.2 == <1.3.0", () => {
+      expect(satisfies("1.9.0", "~1")).toBe(true);
+      expect(satisfies("2.0.0", "~1")).toBe(false);
+      expect(satisfies("1.2.9", "~1.2")).toBe(true);
+      expect(satisfies("1.3.0", "~1.2")).toBe(false);
     });
   });
 });
