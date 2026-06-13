@@ -1,6 +1,6 @@
 {
   "name": "@knitkit/create",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Scaffold a runnable knitkit starter (host + remote, shared singleton) in one command.",
   "type": "module",
   "bin": {
