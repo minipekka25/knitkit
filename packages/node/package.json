@@ -1,6 +1,6 @@
 {
   "name": "@knitkit/node",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Node SSR for knitkit: module.register loader hooks, module cache, SRI, import-map serialization for hydration parity.",
   "type": "module",
   "main": "./dist/index.js",
@@ -20,8 +20,12 @@
       "import": "./dist/register.js"
     }
   },
-  "files": ["dist"],
-  "sideEffects": ["./dist/register.js"],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "./dist/register.js"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
@@ -29,12 +33,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@knitkit/runtime": "*"
+    "@knitkit/runtime": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.12.0",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@knitkit/runtime",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Runtime-first, bundler-agnostic module federation on native ESM + import maps.",
   "type": "module",
   "main": "./dist/index.js",
@@ -12,7 +12,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
@@ -27,5 +29,8 @@
     "vitest": "^1.6.0",
     "size-limit": "^11.1.2",
     "@size-limit/preset-small-lib": "^11.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

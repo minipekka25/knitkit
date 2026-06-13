@@ -1,6 +1,6 @@
 {
   "name": "@knitkit/overrides",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Local-override dev tool for knitkit: point a remote at localhost against deployed others (import-map-overrides style).",
   "type": "module",
   "main": "./dist/index.js",
@@ -12,7 +12,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
@@ -25,5 +27,8 @@
     "tsup": "^8.1.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
