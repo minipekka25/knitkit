@@ -15,3 +15,8 @@ playwright-report/
 
 # Generated benchmark output (reproduce with `node benchmarks/*.mjs`)
 benchmarks/results/
+
+# Internal working notes / planning (kept locally, never committed)
+MEMORY.md
+.mimocode/
+project_brief.md
