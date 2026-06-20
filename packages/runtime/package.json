@@ -27,7 +27,7 @@
     "tsup": "^8.1.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0",
-    "size-limit": "^11.1.2",
+    "size-limit": "^12.1.0",
     "@size-limit/preset-small-lib": "^11.1.2"
   },
   "publishConfig": {
